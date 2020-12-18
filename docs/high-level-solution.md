@@ -1,4 +1,4 @@
-[Home](./../README.md)
+[Home](/README.md)
 # Problem Solution
 
 Item Level SKUs' Traceable system with tamper proof solution

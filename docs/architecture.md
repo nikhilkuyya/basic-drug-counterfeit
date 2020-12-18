@@ -1,4 +1,4 @@
-[Home](./../README.md)
+[Home](/README.md)
 
 # Architecture
 
@@ -10,7 +10,7 @@ Registration :: All the Participants who wants to become the part of this networ
 ---
 **Projects**
 
-- Network setup.
+- [Network setup](./network/README.md)
 - Smart Contract.
 - Node Application.
 
