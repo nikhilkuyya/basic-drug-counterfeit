@@ -12,5 +12,7 @@ configuration decision documentation.
 
 ## Crypto Configuration File
 
+- YAML File for configuration, ***crypto-config.yaml***
 
-
+> This file constitues the certification generation information for all the running stakeholder machine.
+> Generally, there would any process used by organizations or peer for generation of certification for identity.
