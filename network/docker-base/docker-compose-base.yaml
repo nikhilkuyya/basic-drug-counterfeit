@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  orderer.drug-counterfeit-network.com:
+  peer0.manufacturer.drug-counterfeit-network.com:
+  peer1.manufacturer.drug-counterfeit-network.com:
+  peer0.distributor.drug-counterfeit-network.com:
+  peer1.distributor.drug-counterfeit-network.com:
+  peer0.transporter.drug-counterfeit-network.com:
+  peer1.transporter.drug-counterfeit-network.com:
+  peer0.retailer.drug-counterfeit-network.com:
+  peer1.retailer.drug-counterfeit-network.com:
+  peer0.consumer.drug-counterfeit-network.com:
+  peer1.consumer.drug-counterfeit-network.com:
