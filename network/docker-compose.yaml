@@ -1,4 +1,4 @@
-version: '1'
+version: "2"
 
 volumes:
   orderer.drug-counterfeit-network.com:
@@ -11,53 +11,52 @@ volumes:
   peer0.transporter.drug-counterfeit-network.com:
   peer1.transporter.drug-counterfeit-network.com:
   peer0.consumer.drug-counterfeit-network.com:
-  peer1.consumer.drug-counterfeit-network.com:  
+  peer1.consumer.drug-counterfeit-network.com:
 
 networks:
   drug-counterfeit-sys-network:
 
 services:
-
   ca.manufacturer.drug-counterfeit-network.com:
     image: hyperledger/fabric-ca:latest
-    environment: 
+    environment:
       - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
       - FABRIC_CA_SERVER_CA_NAME=ca.manufacturer.drug-counterfeit-network.com
       - FABRIC_CA_SERVER_TLS_ENABLED=false
-    ports: 
+    ports:
       - "7054:7054"
     command: sh -c "fabric-ca-server start -b admin:adminpw -d"
-    volumes: 
+    volumes:
       - ./crypto-config/peerOrganizations/manufacturer.drug-counterfeit-network.com/ca/:/etc/hyperledger/fabric-ca-server-config
     container_name: ca.manufacturer.drug-counterfeit-network.com
     networks:
       - drug-counterfeit-sys-network
-    
+
   ca.distributor.drug-counterfeit-network.com:
     image: hyperledger/fabric-ca:latest
-    environment: 
+    environment:
       - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
       - FABRIC_CA_SERVER_CA_NAME=ca.distributor.drug-counterfeit-network.com
       - FABRIC_CA_SERVER_TLS_ENABLED=false
-    ports: 
+    ports:
       - "8054:7054"
     command: sh -c "fabric-ca-server start -b admin:adminpw -d"
-    volumes: 
+    volumes:
       - ./crypto-config/peerOrganizations/distributor.drug-counterfeit-network.com/ca/:/etc/hyperledger/fabric-ca-server-config
     container_name: ca.distributor.drug-counterfeit-network.com
     networks:
       - drug-counterfeit-sys-network
-  
+
   ca.retailer.drug-counterfeit-network.com:
     image: hyperledger/fabric-ca:latest
-    environment: 
+    environment:
       - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
       - FABRIC_CA_SERVER_CA_NAME=ca.retailer.drug-counterfeit-network.com
       - FABRIC_CA_SERVER_TLS_ENABLED=false
-    ports: 
+    ports:
       - "9054:7054"
     command: sh -c "fabric-ca-server start -b admin:adminpw -d"
-    volumes: 
+    volumes:
       - ./crypto-config/peerOrganizations/retailer.drug-counterfeit-network.com/ca/:/etc/hyperledger/fabric-ca-server-config
     container_name: ca.retailer.drug-counterfeit-network.command
     networks:
@@ -65,14 +64,14 @@ services:
 
   ca.transporter.drug-counterfeit-network.com:
     image: hyperledger/fabric-ca:latest
-    environment: 
+    environment:
       - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
       - FABRIC_CA_SERVER_CA_NAME=ca.transporter.drug-counterfeit-network.com
       - FABRIC_CA_SERVER_TLS_ENABLED=false
-    ports: =
+    ports:
       - "10054:7054"
     command: sh -c "fabric-ca-server start -b admin:adminpw -d"
-    volumes: 
+    volumes:
       - ./crypto-config/peerOrganizations/transporter.drug-counterfeit-network.com/ca/:/etc/hyperledger/fabric-ca-server-config
     container_name: ca.transporter.drug-counterfeit-network.com
     networks:
@@ -80,20 +79,20 @@ services:
 
   ca.consumer.drug-counterfeit-network.com:
     image: hyperledger/fabric-ca:latest
-    environment: 
+    environment:
       - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
       - FABRIC_CA_SERVER_CA_NAME=ca.consumer.drug-counterfeit-network.com
       - FABRIC_CA_SERVER_TLS_ENABLED=false
-    ports: 
+    ports:
       - "11054:7054"
-    volumes: 
+    volumes:
       - ./crypto-config/peerOrganizations/consumer.drug-counterfeit-network.com/ca/:/etc/hyperledger/fabric-ca-server-config
     container_name: ca.consumer.drug-counterfeit-network.com
     networks:
       - drug-counterfeit-sys-network
 
   orderer.drug-counterfeit-network.com:
-    extends: 
+    extends:
       file: docker-base/docker-compose-base.yaml
       service: orderer.drug-counterfeit-network.com
     container_name: orderer.drug-counterfeit-network.com
@@ -101,7 +100,7 @@ services:
       - drug-counterfeit-sys-network
 
   peer0.manufacturer.drug-counterfeit-network.com:
-    extends: 
+    extends:
       file: docker-base/docker-compose-base.yaml
       service: peer0.manufacturer.drug-counterfeit-network.com
     container_name: peer0.manufacturer.drug-counterfeit-network.com
@@ -109,15 +108,15 @@ services:
       - drug-counterfeit-sys-network
 
   peer1.manufacturer.drug-counterfeit-network.com:
-    extends: 
+    extends:
       file: docker-base/docker-compose-base.yaml
       service: peer1.manufacturer.drug-counterfeit-network.com
     container_name: peer1.manufacturer.drug-counterfeit-network.com
     networks:
       - drug-counterfeit-sys-network
-  
+
   peer0.distributor.drug-counterfeit-network.com:
-    extends: 
+    extends:
       file: docker-base/docker-compose-base.yaml
       service: peer0.distributor.drug-counterfeit-network.com
     container_name: peer0.distributor.drug-counterfeit-network.com
@@ -125,7 +124,7 @@ services:
       - drug-counterfeit-sys-network
 
   peer1.distributor.drug-counterfeit-network.com:
-    extends: 
+    extends:
       file: docker-base/docker-compose-base.yaml
       service: peer1.distributor.drug-counterfeit-network.com
     container_name: peer1.distributor.drug-counterfeit-network.com
@@ -133,7 +132,7 @@ services:
       - drug-counterfeit-sys-network
 
   peer0.retailer.drug-counterfeit-network.com:
-    extends: 
+    extends:
       file: docker-base/docker-compose-base.yaml
       service: peer0.retailer.drug-counterfeit-network.com
     container_name: peer0.retailer.drug-counterfeit-network.com
@@ -149,7 +148,7 @@ services:
       - drug-counterfeit-sys-network
 
   peer0.transporter.drug-counterfeit-network.com:
-    extends: 
+    extends:
       file: docker-base/docker-compose-base.yaml
       service: peer0.transporter.drug-counterfeit-network.com
     container_name: peer0.transporter.drug-counterfeit-network.com
@@ -157,7 +156,7 @@ services:
       - drug-counterfeit-sys-network
 
   peer1.transporter.drug-counterfeit-network.com:
-    extends: 
+    extends:
       file: docker-base/docker-compose-base.yaml
       service: peer1.transporter.drug-counterfeit-network.com
     container_name: peer1.transporter.drug-counterfeit-network.com
@@ -165,7 +164,7 @@ services:
       - drug-counterfeit-sys-network
 
   peer0.consumer.drug-counterfeit-network.com:
-    extends: 
+    extends:
       file: docker-base/docker-compose-base.yaml
       service: peer0.consumer.drug-counterfeit-network.com
     container_name: peer0.consumer.drug-counterfeit-network.com
@@ -173,7 +172,7 @@ services:
       - drug-counterfeit-sys-network
 
   peer1.consumer.drug-counterfeit-network.com:
-    extends: 
+    extends:
       file: docker-base/docker-compose-base.yaml
       service: peer1.consumer.drug-counterfeit-network.com
     container_name: peer1.consumer.drug-counterfeit-network.com
@@ -185,7 +184,7 @@ services:
     image: hyperledger/fabric-tools:latest
     tty: true
     stdin_open: true
-    environment: 
+    environment:
       - GOPATH=/opt/GOPATH
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
       - FABRIC_LOGGING_SPEC=INFO
@@ -196,7 +195,7 @@ services:
       - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/manufacturer.drug-counterfeit-network.com/users/Admin@manufacturer.drug-counterfeit-network.com/msp
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: /bin/bash
-    volumes: 
+    volumes:
       - /var/run/:/host/var/run
       - ./../chaincode/:/opt/gopath/src/github.com/hyperledger/fabric/peer/chaincode/
       - ./../chaincode-advanced/:/opt/gopath/src/github.com/hyperledger/fabric/peer/chaincode-advanced/
@@ -224,3 +223,23 @@ services:
       - drug-counterfeit-sys-network
 
   chaincode:
+    image: hyperledger/fabric-ccenv:latest
+    container_name: chaincode
+    tty: true
+    environment:
+      - GOPATH=/opt/gopath
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - FABRIC_LOGGING_SPEC=INFO
+      - CORE_PEER_ID=chaincode
+      - CORE_PEER_TLS_ENABLED=false
+      - CORE_PEER_ADDRESS=manufacturer.drug-counterfeit-network.com:7051
+      - CORE_PEER_LOCALMSPID=manufacturerMSP
+      - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/crypto/peerOrganizations/manufacturer.drug-counterfeit-network.com/users/Admin@manufacturer.drug-counterfeit-network.com/msp
+    working_dir: /opt/gopath/src/chaincode
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./../chaincode:/opt/gopath/src/chaincode/
+      - ./../chaincode-advanced:/opt/gopath/src/chaincode-advanced/
+      - ./crypto-config:/opt/gopath/src/crypto/
+    networks:
+      - drug-counterfeit-sys-network
