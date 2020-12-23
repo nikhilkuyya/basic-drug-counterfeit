@@ -126,13 +126,13 @@ function networkUp() {
   # generate artifacts if they don't exist
   if [ ! -d "crypto-config" ]; then
     generateCerts
-    replacePrivateKey
+    # replacePrivateKey
     generateChannelArtifacts
   fi
   # Start the docker containers using compose file
   IMAGE_TAG=$IMAGETAG docker-compose -f "$COMPOSE_FILE" up -d 2>&1
-  docker ps -a
-  if [ $? -ne 0 ]; then
+  docker ps -aq | wc -l
+  if [ $? -ne 18 ]; then
     echo "ERROR !!!! Unable to start network"
     exit 1
   fi
@@ -140,9 +140,9 @@ function networkUp() {
   sleep 1
   echo "Sleeping 10s to allow cluster to complete booting"
   sleep 9
-
+  docker ps -a
   # now run the bootstrap script
-  docker exec cli scripts/bootstrap.sh "$CHANNEL_NAME" "$CLI_DELAY" "$LANGUAGE" "$CLI_TIMEOUT" "$VERBOSE"
+  # docker exec cli scripts/bootstrap.sh "$CHANNEL_NAME" "$CLI_DELAY" "$LANGUAGE" "$CLI_TIMEOUT" "$VERBOSE"
   if [ $? -ne 0 ]; then
     echo "ERROR !!!! Test failed"
     exit 1
@@ -182,7 +182,7 @@ function networkDown() {
     #Cleanup images
     removeUnwantedImages
     # remove orderer block and other channel configuration transactions and certs
-    rm -rf channel-artifacts/*.block channel-artifacts/*.tx crypto-config
+    sudo rm -rf channel-artifacts/*.block channel-artifacts/*.tx crypto-config
   fi
 }
 
@@ -367,7 +367,7 @@ VERSION_NO=1.1
 # type of chaincode to be installed
 TYPE="basic"
 # use this as the default docker-compose yaml definition
-COMPOSE_FILE=docker-compose-e2e.yml
+COMPOSE_FILE=docker-compose.yaml
 # use node as the default language for chaincode
 LANGUAGE="node"
 # default image tag
