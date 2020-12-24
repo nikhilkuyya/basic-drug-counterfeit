@@ -132,7 +132,7 @@ function networkUp() {
   # Start the docker containers using compose file
   IMAGE_TAG=$IMAGETAG docker-compose -f "$COMPOSE_FILE" up -d 2>&1
   docker ps -aq | wc -l
-  if [ $? -ne 18 ]; then
+  if [ $? -ne 0 ]; then
     echo "ERROR !!!! Unable to start network"
     exit 1
   fi
@@ -142,7 +142,7 @@ function networkUp() {
   sleep 9
   docker ps -a
   # now run the bootstrap script
-  # docker exec cli scripts/bootstrap.sh "$CHANNEL_NAME" "$CLI_DELAY" "$LANGUAGE" "$CLI_TIMEOUT" "$VERBOSE"
+  docker exec cli scripts/bootstrap.sh "$CHANNEL_NAME" "$CLI_DELAY" "$LANGUAGE" "$CLI_TIMEOUT" "$VERBOSE"
   if [ $? -ne 0 ]; then
     echo "ERROR !!!! Test failed"
     exit 1
@@ -181,6 +181,8 @@ function networkDown() {
     clearContainers
     #Cleanup images
     removeUnwantedImages
+    #clean volumnes
+    docker volume prune
     # remove orderer block and other channel configuration transactions and certs
     sudo rm -rf channel-artifacts/*.block channel-artifacts/*.tx crypto-config
   fi
