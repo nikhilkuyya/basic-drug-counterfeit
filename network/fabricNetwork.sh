@@ -16,7 +16,7 @@ function printHelp() {
   echo "      - 'install' - install a specific version of chaincode"
   echo "      - 'update' - update chaincode to a new version"
   echo "      - 'generate' - generate required certificates and genesis block"
-  echo "    -c <channel name> - channel name to use (defaults to \"drugCounterfeitChannel\")"
+  echo "    -c <channel name> - channel name to use (defaults to \"pharmachannel\")"
   echo "    -t <timeout> - CLI timeout duration in seconds (defaults to 20)"
   echo "    -d <delay> - delay duration in seconds (defaults to 20)"
   echo "    -f <docker-compose-file> - specify which docker-compose file use (defaults to docker-compose-e2e.yaml)"
@@ -29,11 +29,11 @@ function printHelp() {
   echo "Typically, one would first generate the required certificates and "
   echo "genesis block, then bring up the network. e.g.:"
   echo
-  echo "	fabricNetwork.sh generate -c drugCounterfeitChannel"
-  echo "	fabricNetwork up -c drugCounterfeitChannel -s couchdb"
-  echo "        fabricNetwork up -c drugCounterfeitChannel -s couchdb -i 1.4.0"
+  echo "	fabricNetwork.sh generate -c pharmachannel"
+  echo "	fabricNetwork up -c pharmachannel -s couchdb"
+  echo "        fabricNetwork up -c pharmachannel -s couchdb -i 1.4.0"
   echo "	fabricNetwork up -l node"
-  echo "	fabricNetwork down -c drugCounterfeitChannel"
+  echo "	fabricNetwork down -c pharmachannel"
   echo
   echo "Taking all defaults:"
   echo "	fabricNetwork generate"
@@ -176,7 +176,7 @@ function networkDown() {
   if [ "$MODE" != "restart" ]; then
     # Bring down the network, deleting the volumes
     #Delete any ledger backups
-    docker run -v "$PWD":/tmp/drugCounterfeitChannel --rm hyperledger/fabric-tools:"$IMAGETAG" rm -Rf /tmp/drugCounterfeitChannel/ledgers-backup
+    docker run -v "$PWD":/tmp/pharmachannel --rm hyperledger/fabric-tools:"$IMAGETAG" rm -Rf /tmp/pharmachannel/ledgers-backup
     #Cleanup the chaincode containers
     clearContainers
     #Cleanup images
@@ -460,3 +460,4 @@ else
   printHelp
   exit 1
 fi
+
