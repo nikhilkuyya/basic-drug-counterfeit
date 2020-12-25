@@ -2,4 +2,4 @@
 
 we will write the observation when network is starting and playground with network in action.
 
-lscc, vscc , qscc - life cycle chaincode.
+lscc, cscc , qscc - life cycle chaincode.

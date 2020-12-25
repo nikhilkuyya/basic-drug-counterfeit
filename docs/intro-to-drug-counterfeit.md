@@ -34,4 +34,4 @@ Definition : Fake / Black market of drug supply of medicine.
 - Transperancy  : Need to have system to track , when needed.
 - Scalable      : It needed to scale the system.
 - Interoperable : Work across different system. 
-- Efficient Process : We needed Efficient process in 
+- Efficient Process : It helps to identify the process issue.
