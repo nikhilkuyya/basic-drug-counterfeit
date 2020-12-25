@@ -32,4 +32,4 @@ Item Level SKUs' Traceable system with tamper proof solution
 - As core logic is handled by hyperledger fabric.
 - Interact with logic with available by building application using REST services and interfaces.
 
-Note:: SKU - Stock keeping unit
+***SKU*** - Stock keeping unit
