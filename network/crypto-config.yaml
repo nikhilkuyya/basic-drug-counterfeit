@@ -1,13 +1,13 @@
 OrdererOrgs:
   - Name: Orderer
     Domain: drug-counterfeit-network.com
-    Specs: 
+    Specs:
       - Hostname: orderer
 PeerOrgs:
-  - Name: Distributor 
+  - Name: Distributor
     Domain: distributor.drug-counterfeit-network.com
     EnableOUs: true
-    Template: 
+    Template:
       Count: 2
     Users:
       Count: 0
@@ -28,7 +28,7 @@ PeerOrgs:
   - Name: Retailer
     Domain: retailer.drug-counterfeit-network.com
     EnableOUs: true
-    Template: 
+    Template:
       Count: 2
     Users:
       Count: 0

@@ -141,7 +141,8 @@ Orderer: &OrdererDefaults
     MaxMessageCount: 10
     AbsoluteMaxBytes: 99MB
     PreferredMaxBytes: 512KB
-  Capabilities: *OrdererCapabilities
+  Capabilities:
+    <<: *OrdererCapabilities
   Policies:
     Readers:
       Type: ImplicitMeta
@@ -184,7 +185,7 @@ Profiles:
     Application:
       <<: *ApplicationDefaults
       Organizations:
-        - <<: *OrdererOrg
+        - *OrdererOrg
     Consortiums:
       DrugCounterfeitConsortium:
         Organizations:

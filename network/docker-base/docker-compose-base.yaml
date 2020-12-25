@@ -201,7 +201,7 @@ services:
     volumes:
       - /var/run:/host/var/run
       - ../crypto-config/peerOrganizations/retailer.drug-counterfeit-network.com/peers/peer1.retailer.drug-counterfeit-network.com/msp:/etc/hyperledger/fabric/msp
-      - ../crypto-config/peerOrganziations/retailer.drug-counterfeit-network.com/peers/peer1.retailer.drug-counterfeit-network.com/tls:/etc/hyperledger/fabric/tls
+      - ../crypto-config/peerOrganizations/retailer.drug-counterfeit-network.com/peers/peer1.retailer.drug-counterfeit-network.com/tls:/etc/hyperledger/fabric/tls
       - peer1.retailer.drug-counterfeit-network.com:/var/hyperledger/production
     ports:
       - 14051:14051
