@@ -291,7 +291,7 @@ function generateChannelArtifacts() {
   echo "#######    Generating anchor peer update for Manufacturer   ##########"
   echo "#################################################################"
   set -x
-  configtxgen -profile DrugCounterfeitChannel -outputAnchorPeersUpdate ./channel-artifacts/manufacturerAnchors.tx -channelID "$CHANNEL_NAME" -asOrg Manufacturer
+  configtxgen -profile DrugCounterfeitChannel -outputAnchorPeersUpdate ./channel-artifacts/manufacturerMSPAnchors.tx -channelID "$CHANNEL_NAME" -asOrg Manufacturer
   res=$?
   set +x
   if [ $res -ne 0 ]; then
@@ -304,7 +304,7 @@ function generateChannelArtifacts() {
   echo "#######    Generating anchor peer update for Distributor   ##########"
   echo "#################################################################"
   set -x
-  configtxgen -profile DrugCounterfeitChannel -outputAnchorPeersUpdate ./channel-artifacts/distributorAnchors.tx -channelID "$CHANNEL_NAME" -asOrg Distributor
+  configtxgen -profile DrugCounterfeitChannel -outputAnchorPeersUpdate ./channel-artifacts/distributorMSPAnchors.tx -channelID "$CHANNEL_NAME" -asOrg Distributor
   res=$?
   set +x
   if [ $res -ne 0 ]; then
@@ -318,7 +318,7 @@ function generateChannelArtifacts() {
   echo "#######    Generating anchor peer update for Transporter   ##########"
   echo "#################################################################"
   set -x
-  configtxgen -profile DrugCounterfeitChannel -outputAnchorPeersUpdate ./channel-artifacts/transporterAnchors.tx -channelID "$CHANNEL_NAME" -asOrg Transporter
+  configtxgen -profile DrugCounterfeitChannel -outputAnchorPeersUpdate ./channel-artifacts/transporterMSPAnchors.tx -channelID "$CHANNEL_NAME" -asOrg Transporter
   res=$?
   set +x
   if [ $res -ne 0 ]; then
@@ -332,7 +332,7 @@ function generateChannelArtifacts() {
   echo "#######    Generating anchor peer update for Retailer   ##########"
   echo "#################################################################"
   set -x
-  configtxgen -profile DrugCounterfeitChannel -outputAnchorPeersUpdate ./channel-artifacts/retailerAnchors.tx -channelID "$CHANNEL_NAME" -asOrg Retailer
+  configtxgen -profile DrugCounterfeitChannel -outputAnchorPeersUpdate ./channel-artifacts/retailerMSPAnchors.tx -channelID "$CHANNEL_NAME" -asOrg Retailer
   res=$?
   set +x
   if [ $res -ne 0 ]; then
@@ -346,7 +346,7 @@ function generateChannelArtifacts() {
   echo "#######    Generating anchor peer update for Consumer   ##########"
   echo "#################################################################"
   set -x
-  configtxgen -profile DrugCounterfeitChannel -outputAnchorPeersUpdate ./channel-artifacts/consumerAnchors.tx -channelID "$CHANNEL_NAME" -asOrg Consumer
+  configtxgen -profile DrugCounterfeitChannel -outputAnchorPeersUpdate ./channel-artifacts/consumerMSPAnchors.tx -channelID "$CHANNEL_NAME" -asOrg Consumer
   res=$?
   set +x
   if [ $res -ne 0 ]; then

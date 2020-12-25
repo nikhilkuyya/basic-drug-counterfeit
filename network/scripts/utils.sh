@@ -68,18 +68,18 @@ setGlobals() {
     CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_RETAILER_CA
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/retailer.drug-counterfeit-network.com/users/Admin@retailer.drug-counterfeit-network.com/msp
     if [ "$PEER" -eq 0 ]; then
-      CORE_PEER_ADDRESS=peer0.retailer.drug-counterfeit-network.com:11051
+      CORE_PEER_ADDRESS=peer0.retailer.drug-counterfeit-network.com:13051
     else
-      CORE_PEER_ADDRESS=peer1.retailer.drug-counterfeit-network.com:12051
+      CORE_PEER_ADDRESS=peer1.retailer.drug-counterfeit-network.com:14051
     fi
   elif [ "$ORG" == 'consumer' ]; then
     CORE_PEER_LOCALMSPID="consumerMSP"
     CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_CONSUMER_CA
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/consumer.drug-counterfeit-network.com/users/Admin@consumer.drug-counterfeit-network.com/msp
     if [ "$PEER" -eq 0 ]; then
-      CORE_PEER_ADDRESS=peer0.consumer.drug-counterfeit-network.com:11051
+      CORE_PEER_ADDRESS=peer0.consumer.drug-counterfeit-network.com:15051
     else
-      CORE_PEER_ADDRESS=peer1.consumer.drug-counterfeit-network.com:12051
+      CORE_PEER_ADDRESS=peer1.consumer.drug-counterfeit-network.com:16051
     fi
   else
     echo "================== ERROR !!! ORG Unknown =================="
@@ -93,12 +93,12 @@ updateAnchorPeers() {
 
   if [ -z "$CORE_PEER_TLS_ENABLED" -o "$CORE_PEER_TLS_ENABLED" = "false" ]; then
     set -x
-    peer channel update -o orderer.drug-counterfeit-network.com:7050 -c "$CHANNEL_NAME" -f ./channel-artifacts/${CORE_PEER_LOCALMSPID}anchors.tx >&log.txt
+    peer channel update -o orderer.drug-counterfeit-network.com:7050 -c "$CHANNEL_NAME" -f ./channel-artifacts/${CORE_PEER_LOCALMSPID}Anchors.tx >&log.txt
     res=$?
     set +x
   else
     set -x
-    peer channel update -o orderer.drug-counterfeit-network.com:7050 -c "$CHANNEL_NAME" -f ./channel-artifacts/${CORE_PEER_LOCALMSPID}anchors.tx --tls "$CORE_PEER_TLS_ENABLED" --cafile $ORDERER_CA >&log.txt
+    peer channel update -o orderer.drug-counterfeit-network.com:7050 -c "$CHANNEL_NAME" -f ./channel-artifacts/${CORE_PEER_LOCALMSPID}Anchors.tx --tls "$CORE_PEER_TLS_ENABLED" --cafile $ORDERER_CA >&log.txt
     res=$?
     set +x
   fi
