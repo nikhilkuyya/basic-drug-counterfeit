@@ -40,15 +40,15 @@ Organizations:
       Readers:
         Type: Signature
         Rule: "OR('distributorMSP.client', 'distributorMSP.peer', 'distributorMSP.admin')"
-      Writers: 
+      Writers:
         Type: Signature
         Rule: "OR('distributorMSP.client', 'distributorMSP.peer', 'distributorMSP.admin')"
-      Admins: 
+      Admins:
         Type: Signature
         Rule: "OR('distributorMSP.client', 'distributorMSP.peer', 'distributorMSP.admin')"
     AnchorPeers:
       - Host: peer0.distributor.drug-counterfeit-network.com
-        Port: 8051
+        Port: 9051
 
   - &TransporterOrg
     Name: Transporter
@@ -58,15 +58,15 @@ Organizations:
       Readers:
         Type: Signature
         Rule: "OR('transporterMSP.client', 'transporterMSP.peer', 'transporterMSP.admin' )"
-      Writers: 
+      Writers:
         Type: Signature
         Rule: "OR('transporterMSP.client', 'transporterMSP.peer', 'transporterMSP.admin' )"
-      Admins: 
+      Admins:
         Type: Signature
         Rule: "OR('transporterMSP.client', 'transporterMSP.peer', 'transporterMSP.admin' )"
     AnchorPeers:
       - Host: peer0.transporter.drug-counterfeit-network.com
-        Port: 9051
+        Port: 11051
 
   - &RetailerOrg
     Name: Retailer
@@ -84,7 +84,7 @@ Organizations:
         Rule: "OR('retailerMSP.client', 'retailerMSP.admin', 'retailerMSP.peer')"
     AnchorPeers:
       - Host: peer0.retailer.drug-counterfeit-network.com
-        Port: 10051
+        Port: 13051
 
   - &ConsumerOrg
     Name: Consumer
@@ -102,12 +102,12 @@ Organizations:
         Rule: "OR('consumerMSP.client', 'consumerMSP.admin', 'consumerMSP.peer')"
     AnchorPeers:
       - Host: peer0.consumer.drug-counterfeit-network.com
-        Port: 11051
+        Port: 15051
 
 # Capabilities
 Capabilities:
   Channel: &ChannelCapabilities
-    V1_4_3: true
+    V1_4_2: true
     V1_3: false
     V1_1: false
   Application: &ApplicationCapabilities
@@ -146,7 +146,7 @@ Orderer: &OrdererDefaults
     Readers:
       Type: ImplicitMeta
       Rule: "ANY Readers"
-    Writers: 
+    Writers:
       Type: ImplicitMeta
       Rule: "ANY Writers"
     Admins:
@@ -157,7 +157,7 @@ Orderer: &OrdererDefaults
       Rule: "ANY Writers"
 
 Channel: &ChannelDefaults
-  Policies: 
+  Policies:
     Readers:
       Type: ImplicitMeta
       Rule: "ANY Readers"
@@ -195,7 +195,7 @@ Profiles:
           - *ConsumerOrg
 
   DrugCounterfeitChannel:
-    Consortium: DrugCounterfeitConsortium    
+    Consortium: DrugCounterfeitConsortium
     Application:
       <<: *ApplicationDefaults
       Organizations:
