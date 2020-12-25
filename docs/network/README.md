@@ -1,12 +1,10 @@
-[Home](/README.md) 
-
 # Network
 
-Consitutues 
-- Test environments setup for network.
-- Executables for the setting up the files.
-- Documentation of how new peer adds in the real environement.
+[Back](../architecture.md)  |  [Home](/README.md)
 
+## Consitutues
 
 - [File Structure](./file-structure.md)
+- [Runing Network](./network-scripts.md)
+- [Test environments setup for network](./playground-network.md)
 - [Real World Peer Join](./peer-join.md)
