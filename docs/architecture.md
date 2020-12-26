@@ -11,7 +11,7 @@ Registration :: All the Participants who wants to become the part of this networ
 ## Projects
 
 - [Network setup](./network/README.md)
-- Smart Contract.
+- [Smart Contract](./chaincode/README.md)
 - Node Application.
 
 ---
