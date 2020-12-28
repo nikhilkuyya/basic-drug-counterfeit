@@ -1,0 +1,40 @@
+{
+  "name": "pharmanet",
+  "version": "0.0.1",
+  "description": "Real World mock solution of drug counterfeit",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "scripts": {
+    "format":"prettier --write **/** ",
+    "lint": "eslint . --fix",
+    "start:dev": "fabric-chaincode-node start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/nikhilkuyya/basic-drug-counterfeit.git"
+  },
+  "keywords": [
+    "node",
+    "chaincode"
+  ],
+  "author": "Nikhil Kuyya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikhilkuyya/basic-drug-counterfeit/issues"
+  },
+  "homepage": "https://github.com/nikhilkuyya/basic-drug-counterfeit#readme",
+  "dependencies": {
+    "fabric-contract-api": "^1.4.0",
+    "fabric-shim": "^1.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.16.0",
+    "prettier": "^2.2.1"
+  }
+}
