@@ -22,8 +22,7 @@ Ledger contains both blockchain and world state.
 
 World State is collection of all the states.
 
-## Division of Smart Contracts
+## Sections
 
-We will split the smart contract functionality based on the organizations.
-
-ctx : First parameter in transaction, contains the ifnormation of both the information of contract, transaction and access to ledger.
+- [Folder Architecture](./layout.md)
+- [Functionalities](./requirement.md)
