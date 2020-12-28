@@ -2,7 +2,7 @@ Organizations:
   - &OrdererOrg
     Name: Orderer
     ID: ordererMSP
-    MSPDir: crypto-config/ordererOrganizations/drug-counterfeit-network.com/msp
+    MSPDir: crypto-config/ordererOrganizations/pharma-network.com/msp
     Policies:
       Readers:
         Type: Signature
@@ -17,7 +17,7 @@ Organizations:
   - &ManufacturerOrg
     Name: Manufacturer
     ID: manufacturerMSP
-    MSPDir: crypto-config/peerOrganizations/manufacturer.drug-counterfeit-network.com/msp
+    MSPDir: crypto-config/peerOrganizations/manufacturer.pharma-network.com/msp
     Policies:
       Readers:
         Type: Signature
@@ -29,13 +29,13 @@ Organizations:
         Type: Signature
         Rule: "OR('manufacturerMSP.admin', 'manufacturerMSP.peer', 'manufacturerMSP.client')"
     AnchorPeers:
-      - Host: peer0.manufacturer.drug-counterfeit-network.com
+      - Host: peer0.manufacturer.pharma-network.com
         Port: 7051
 
   - &DistributorOrg
     Name: Distributor
     ID: distributorMSP
-    MSPDir: crypto-config/peerOrganizations/distributor.drug-counterfeit-network.com/msp
+    MSPDir: crypto-config/peerOrganizations/distributor.pharma-network.com/msp
     Policies:
       Readers:
         Type: Signature
@@ -47,13 +47,13 @@ Organizations:
         Type: Signature
         Rule: "OR('distributorMSP.client', 'distributorMSP.peer', 'distributorMSP.admin')"
     AnchorPeers:
-      - Host: peer0.distributor.drug-counterfeit-network.com
+      - Host: peer0.distributor.pharma-network.com
         Port: 9051
 
   - &TransporterOrg
     Name: Transporter
     ID: transporterMSP
-    MSPDir: crypto-config/peerOrganizations/transporter.drug-counterfeit-network.com/msp
+    MSPDir: crypto-config/peerOrganizations/transporter.pharma-network.com/msp
     Policies:
       Readers:
         Type: Signature
@@ -65,13 +65,13 @@ Organizations:
         Type: Signature
         Rule: "OR('transporterMSP.client', 'transporterMSP.peer', 'transporterMSP.admin' )"
     AnchorPeers:
-      - Host: peer0.transporter.drug-counterfeit-network.com
+      - Host: peer0.transporter.pharma-network.com
         Port: 11051
 
   - &RetailerOrg
     Name: Retailer
     ID: retailerMSP
-    MSPDir: crypto-config/peerOrganizations/retailer.drug-counterfeit-network.com/msp
+    MSPDir: crypto-config/peerOrganizations/retailer.pharma-network.com/msp
     Policies:
       Readers:
         Type: Signature
@@ -83,13 +83,13 @@ Organizations:
         Type: Signature
         Rule: "OR('retailerMSP.client', 'retailerMSP.admin', 'retailerMSP.peer')"
     AnchorPeers:
-      - Host: peer0.retailer.drug-counterfeit-network.com
+      - Host: peer0.retailer.pharma-network.com
         Port: 13051
 
   - &ConsumerOrg
     Name: Consumer
     ID: consumerMSP
-    MSPDir: crypto-config/peerOrganizations/consumer.drug-counterfeit-network.com/msp
+    MSPDir: crypto-config/peerOrganizations/consumer.pharma-network.com/msp
     Policies:
       Readers:
         Type: Signature
@@ -101,7 +101,7 @@ Organizations:
         Type: Signature
         Rule: "OR('consumerMSP.client', 'consumerMSP.admin', 'consumerMSP.peer')"
     AnchorPeers:
-      - Host: peer0.consumer.drug-counterfeit-network.com
+      - Host: peer0.consumer.pharma-network.com
         Port: 15051
 
 # Capabilities
@@ -135,7 +135,7 @@ Application: &ApplicationDefaults
 Orderer: &OrdererDefaults
   OrdererType: solo
   Addresses:
-    - orderer.drug-counterfeit-network.com:7050
+    - orderer.pharma-network.com:7050
   BatchTimeout: 2s
   BatchSize:
     MaxMessageCount: 10
@@ -187,7 +187,7 @@ Profiles:
       Organizations:
         - *OrdererOrg
     Consortiums:
-      DrugCounterfeitConsortium:
+      PharmaNetConsortium:
         Organizations:
           - *ManufacturerOrg
           - *DistributorOrg
@@ -195,8 +195,8 @@ Profiles:
           - *RetailerOrg
           - *ConsumerOrg
 
-  DrugCounterfeitChannel:
-    Consortium: DrugCounterfeitConsortium
+  PharmaChannel:
+    Consortium: PharmaNetConsortium
     Application:
       <<: *ApplicationDefaults
       Organizations:

@@ -1,39 +1,39 @@
 OrdererOrgs:
   - Name: Orderer
-    Domain: drug-counterfeit-network.com
+    Domain: pharma-network.com
     Specs:
       - Hostname: orderer
 PeerOrgs:
   - Name: Distributor
-    Domain: distributor.drug-counterfeit-network.com
+    Domain: distributor.pharma-network.com
     EnableOUs: true
     Template:
       Count: 2
     Users:
       Count: 0
   - Name: Manufacturer
-    Domain: manufacturer.drug-counterfeit-network.com
+    Domain: manufacturer.pharma-network.com
     EnableOUs: true
     Template:
       Count: 2
     Users:
       Count: 0
   - Name: Transporter
-    Domain: transporter.drug-counterfeit-network.com
+    Domain: transporter.pharma-network.com
     EnableOUs: true
     Template:
       Count: 2
     Users:
       Count: 0
   - Name: Retailer
-    Domain: retailer.drug-counterfeit-network.com
+    Domain: retailer.pharma-network.com
     EnableOUs: true
     Template:
       Count: 2
     Users:
       Count: 0
   - Name: Consumer
-    Domain: consumer.drug-counterfeit-network.com
+    Domain: consumer.pharma-network.com
     EnableOUs: true
     Template:
       Count: 2
