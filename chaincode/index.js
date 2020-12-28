@@ -1,1 +1,1 @@
-module.exports.contracts = []
+module.exports.contracts = [];
