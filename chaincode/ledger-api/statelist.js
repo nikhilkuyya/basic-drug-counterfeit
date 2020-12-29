@@ -17,6 +17,10 @@ class StateList {
     this.supportedClasses = {};
   }
 
+  getCompositeKey(state) {
+    return this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
+  }
+
   /**
    * Add a state to the list. Creates a new state in worldstate with
    * appropriate composite key.  Note that state defines its own key.

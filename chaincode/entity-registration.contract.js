@@ -1,13 +1,14 @@
 const { Context, Contract } = require("fabric-contract-api");
-const CompnayRegistrationList = require("./lib/lists/company-registration.list");
-
+const CompanyList = require("./lib/lists/company.list");
+const validate = require("aproba");
+const Company = require("./lib/models/company");
 /**
  * A Entity Registration Context provides easy way to access the entities
  */
 class EntityRegistrationContext extends Context {
   constructor() {
     super();
-    this.companyRegistrationList = new CompnayRegistrationList(this);
+    this.companyList = new CompanyList(this);
   }
 }
 
@@ -23,8 +24,38 @@ class EntityRegistrationContract extends Contract {
     return new EntityRegistrationContext();
   }
 
-  async instantiate(cxt) {
+  async instantiate(ctx) {
     console.log(" Instantiated the Entity Registration Contract");
+  }
+
+  async registerCompany(
+    ctx,
+    companyCRN,
+    companyName,
+    location,
+    organizationRole
+  ) {
+    /**Validation and seting the object */
+    validate("SSSS", companyCRN, companyName, location, organizationRole);
+    const company = Company.createInstance(
+      companyCRN,
+      companyName,
+      location,
+      organizationRole
+    );
+    company.setCompanyID(
+      this.companyList.getCompanyRegistrationCompositeKey(company)
+    );
+    company.setHiearchy();
+
+    const companyWorldState = await ctx.companyList.getCompany(
+      company.getKey()
+    );
+    if (companyWorldState === null) {
+      return await ctx.compnyList.addCompany(company);
+    } else {
+      return new Error("Already Existing Company");
+    }
   }
 }
 

@@ -11,7 +11,7 @@
     "npm": ">=5"
   },
   "scripts": {
-    "format":"prettier --write **/** ",
+    "format": "prettier --write **/** ",
     "lint": "eslint . --fix",
     "start:dev": "fabric-chaincode-node start"
   },
@@ -30,8 +30,9 @@
   },
   "homepage": "https://github.com/nikhilkuyya/basic-drug-counterfeit#readme",
   "dependencies": {
-    "fabric-contract-api": "^1.4.0",
-    "fabric-shim": "^1.4.0"
+    "aproba": "^2.0.0",
+    "fabric-contract-api": "~1.4.0",
+    "fabric-shim": "~1.4.0"
   },
   "devDependencies": {
     "eslint": "^7.16.0",

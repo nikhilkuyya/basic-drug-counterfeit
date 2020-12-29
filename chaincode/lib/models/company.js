@@ -6,26 +6,26 @@ const HIERARCHYKEY = {
   Retailer: 3,
 };
 
-class CompanyRegistration extends State {
+class Company extends State {
   constructor(obj) {
-    super(CompanyRegistration.getClass(), [obj.companyCRN, obj.companyName]);
+    super(Company.getClass(), [obj.companyCRN, obj.companyName]);
     Object.assign(this, obj);
   }
 
   static getClass() {
-    return "org.pharma-network.com.companyRegistration";
+    return "org.pharma-network.com.company";
   }
 
   static fromBuffer(buffer) {
-    return CompanyRegistration.deserialize(buffer);
+    return Company.deserialize(buffer);
   }
 
   static deserialize(buffer) {
-    return State.deserialize(buffer, CompanyRegistration);
+    return State.deserialize(buffer, Company);
   }
 
   static createInstance(companyCRN, companyName, location, organizationRole) {
-    return new CompanyRegistration({
+    return new Company({
       companyCRN: companyCRN,
       companyName: companyName,
       location: location,
@@ -37,20 +37,24 @@ class CompanyRegistration extends State {
     const organizationRole = this.organizationRole;
     let hierarchyKey;
     switch (organizationRole) {
-      case "Manufacturer":
-        hierarchyKey = HIERARCHYKEY.Manufacturer;
-        break;
-      case "Distributor":
-        hierarchyKey = HIERARCHYKEY.Distributor;
-        break;
-      case "Retailer":
-        hierarchyKey = HIERARCHYKEY.Retailer;
-        break;
-      default:
-        hierarchyKey = undefined;
-        break;
+    case "Manufacturer":
+      hierarchyKey = HIERARCHYKEY.Manufacturer;
+      break;
+    case "Distributor":
+      hierarchyKey = HIERARCHYKEY.Distributor;
+      break;
+    case "Retailer":
+      hierarchyKey = HIERARCHYKEY.Retailer;
+      break;
+    default:
+      hierarchyKey = undefined;
+      break;
     }
     Object.assign(this, { hierarchyKey });
+  }
+
+  setCompanyID(companyID) {
+    Object.assign(this, { companyID });
   }
 
   toBuffer() {
@@ -58,4 +62,4 @@ class CompanyRegistration extends State {
   }
 }
 
-module.exports = CompanyRegistration;
+module.exports = Company;
