@@ -200,8 +200,7 @@ services:
     command: /bin/bash
     volumes:
       - /var/run/:/host/var/run
-      - ./../chaincode/:/opt/gopath/src/github.com/hyperledger/fabric/peer/chaincode/
-      - ./../chaincode-advanced/:/opt/gopath/src/github.com/hyperledger/fabric/peer/chaincode-advanced/
+      - ./../chaincode/:/opt/gopath/src/github.com/hyperledger/fabric/peer/chaincode/      
       - ./crypto-config:/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/
       - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
       - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
@@ -244,8 +243,7 @@ services:
     working_dir: /opt/gopath/src/chaincode
     volumes:
       - /var/run/:/host/var/run/
-      - ./../chaincode:/opt/gopath/src/chaincode/
-      - ./../chaincode-advanced:/opt/gopath/src/chaincode-advanced/
+      - ./../chaincode:/opt/gopath/src/chaincode/      
       - ./crypto-config:/opt/gopath/src/crypto/
     networks:
       - pharma-sys-network
