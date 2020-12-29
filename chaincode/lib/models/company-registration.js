@@ -6,9 +6,9 @@ const HIERARCHYKEY = {
   Retailer: 3,
 };
 
-class Registration extends State {
+class CompanyRegistration extends State {
   constructor(obj) {
-    super(Registration.getClass(), [obj.companyCRN, obj.companyName]);
+    super(CompanyRegistration.getClass(), [obj.companyCRN, obj.companyName]);
     Object.assign(this, obj);
   }
 
@@ -17,15 +17,15 @@ class Registration extends State {
   }
 
   static fromBuffer(buffer) {
-    return Registration.deserialize(buffer);
+    return CompanyRegistration.deserialize(buffer);
   }
 
   static deserialize(buffer) {
-    return State.deserialize(buffer, Registration);
+    return State.deserialize(buffer, CompanyRegistration);
   }
 
   static createInstance(companyCRN, companyName, location, organizationRole) {
-    return new Registration({
+    return new CompanyRegistration({
       companyCRN: companyCRN,
       companyName: companyName,
       location: location,
@@ -37,18 +37,18 @@ class Registration extends State {
     const organizationRole = this.organizationRole;
     let hierarchyKey;
     switch (organizationRole) {
-    case "Manufacturer":
-      hierarchyKey = HIERARCHYKEY.Manufacturer;
-      break;
-    case "Distributor":
-      hierarchyKey = HIERARCHYKEY.Distributor;
-      break;
-    case "Retailer":
-      hierarchyKey = HIERARCHYKEY.Retailer;
-      break;
-    default:
-      hierarchyKey = undefined;
-      break;
+      case "Manufacturer":
+        hierarchyKey = HIERARCHYKEY.Manufacturer;
+        break;
+      case "Distributor":
+        hierarchyKey = HIERARCHYKEY.Distributor;
+        break;
+      case "Retailer":
+        hierarchyKey = HIERARCHYKEY.Retailer;
+        break;
+      default:
+        hierarchyKey = undefined;
+        break;
     }
     Object.assign(this, { hierarchyKey });
   }
@@ -58,4 +58,4 @@ class Registration extends State {
   }
 }
 
-module.exports = Registration;
+module.exports = CompanyRegistration;
