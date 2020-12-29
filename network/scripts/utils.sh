@@ -137,7 +137,7 @@ installChaincode() {
   setGlobals "$PEER" "$ORG"
   VERSION=${3:-1.0}
   set -x
-  peer chaincode install -n certnet -v "${VERSION}" -l "${LANGUAGE}" -p "${CC_SRC_PATH}" >&log.txt
+  peer chaincode install -n pharmanet -v "${VERSION}" -l "${LANGUAGE}" -p "${CC_SRC_PATH}" >&log.txt
   res=$?
   set +x
   cat log.txt
@@ -157,12 +157,12 @@ instantiateChaincode() {
   # the "-o" option
   if [ -z "$CORE_PEER_TLS_ENABLED" -o "$CORE_PEER_TLS_ENABLED" = "false" ]; then
     set -x
-    peer chaincode instantiate -o orderer.drug-counterfeit-network.com:7050 -C "$CHANNEL_NAME" -n certnet -l "${LANGUAGE}" -v "${VERSION}" -c '{"Args":["org.drug-counterfeit-network.certnet:instantiate"]}' -P "OR ('manufacturerMSP.member','distributorMSP.member','transporterMSP.member','retailerMSP.memeber','consumerMSP.member')" >&log.txt
+    peer chaincode instantiate -o orderer.pharma-network.com:7050 -C "$CHANNEL_NAME" -n pharmanet -l "${LANGUAGE}" -v "${VERSION}" -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:instantiate"]}' -P "OR ('manufacturerMSP.member','distributorMSP.member','transporterMSP.member','retailerMSP.memeber','consumerMSP.member')" >&log.txt
     res=$?
     set +x
   else
     set -x
-    peer chaincode instantiate -o orderer.drug-counterfeit-network.com:7050 --tls "$CORE_PEER_TLS_ENABLED" --cafile $ORDERER_CA -C $CHANNEL_NAME -n certnet -l ${LANGUAGE} -v ${VERSION} -c '{"Args":["org.drug-counterfeit-network.certnet:instantiate"]}' -P "OR ('manufacturerMSP.member','distributorMSP.member','transporterMSP.member','retailerMSP.memeber','consumerMSP.member')" >&log.txt
+    peer chaincode instantiate -o orderer.pharma-network.com:7050 --tls "$CORE_PEER_TLS_ENABLED" --cafile $ORDERER_CA -C $CHANNEL_NAME -n pharmanet -l ${LANGUAGE} -v ${VERSION} -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:instantiate"]}' -P "OR ('manufacturerMSP.member','distributorMSP.member','transporterMSP.member','retailerMSP.memeber','consumerMSP.member')" >&log.txt
     res=$?
     set +x
   fi
@@ -180,12 +180,12 @@ upgradeChaincode() {
 
   if [ -z "$CORE_PEER_TLS_ENABLED" -o "$CORE_PEER_TLS_ENABLED" = "false" ]; then
     set -x
-    peer chaincode upgrade -o orderer.drug-counterfeit-network.com:7050 -C $CHANNEL_NAME -n certnet -l ${LANGUAGE} -v ${VERSION} -p ${CC_SRC_PATH} -c '{"Args":["org.drug-counterfeit-network.certnet:instantiate"]}' -P "OR ('manufacturerMSP.member','distributorMSP.member','transporterMSP.member','retailerMSP.memeber','consumerMSP.member')" >&log.txt
+    peer chaincode upgrade -o orderer.pharma-network.com:7050 -C $CHANNEL_NAME -n pharmanet -l ${LANGUAGE} -v ${VERSION} -p ${CC_SRC_PATH} -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:instantiate"]}' -P "OR ('manufacturerMSP.member','distributorMSP.member','transporterMSP.member','retailerMSP.memeber','consumerMSP.member')" >&log.txt
     res=$?
     set +x
   else
     set -x
-peer chaincode upgrade -o orderer.certification-network.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n certnet -l ${LANGUAGE} -v ${VERSION} -p ${CC_SRC_PATH} -c '{"Args":["org.certification-network.certnet:instantiate"]}' -P "OR ('manufacturerMSP.member','distributorMSP.member','transporterMSP.member','retailerMSP.memeber','consumerMSP.member')" >&log.txt
+peer chaincode upgrade -o orderer.certification-network.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n pharmanet -l ${LANGUAGE} -v ${VERSION} -p ${CC_SRC_PATH} -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:instantiate"]}' -P "OR ('manufacturerMSP.member','distributorMSP.member','transporterMSP.member','retailerMSP.memeber','consumerMSP.member')" >&log.txt
     res=$?
     set +x
   fi
@@ -212,7 +212,7 @@ chaincodeQuery() {
     sleep $DELAY
     echo "Attempting to Query peer${PEER}.${ORG} ...$(($(date +%s) - starttime)) secs"
     set -x
-    peer chaincode query -C $CHANNEL_NAME -n certnet -c '{"Args":["org.certification-network.certnet:instantiate"]}' >&log.txt
+    peer chaincode query -C $CHANNEL_NAME -n pharmanet -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:instantiate"]}' >&log.txt
     res=$?
     set +x
     test $res -eq 0 && VALUE=$(cat log.txt | awk '/Query Result/ {print $NF}')
@@ -229,7 +229,7 @@ chaincodeQuery() {
     echo "===================== Query successful on peer${PEER}.${ORG} on channel '$CHANNEL_NAME' ===================== "
   else
     echo "!!!!!!!!!!!!!!! Query result on peer${PEER}.${ORG} is INVALID !!!!!!!!!!!!!!!!"
-    echo "================== ERROR !!! FAILED to query Chaincode on Certification Network =================="
+    echo "================== ERROR !!! FAILED to query Chaincode on Pharma Network=================="
     echo
     exit 1
   fi
@@ -247,12 +247,12 @@ chaincodeInvoke() {
   # it using the "-o" option
   if [ -z "$CORE_PEER_TLS_ENABLED" -o "$CORE_PEER_TLS_ENABLED" = "false" ]; then
     set -x
-    peer chaincode invoke -o orderer.certification-network.com:7050 -C $CHANNEL_NAME -n certnet $PEER_CONN_PARMS -c '{"Args":["org.certification-network.certnet:createStudent","0001","Aakash Bansal","connect@aakashbansal.com","15"]}' >&log.txt
+    peer chaincode invoke -o orderer.certification-network.com:7050 -C $CHANNEL_NAME -n certnet $PEER_CONN_PARMS -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:registerCompany","0001","Hello","test place","Manufacturer"]}' >&log.txt
     res=$?
     set +x
   else
     set -x
-    peer chaincode invoke -o orderer.certification-network.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n certnet $PEER_CONN_PARMS -c '{"Args":["org.certification-network.certnet:createStudent","0001","Aakash Bansal","connect@aakashbansal.com"]}' >&log.txt
+    peer chaincode invoke -o orderer.certification-network.com:7050 --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA -C $CHANNEL_NAME -n certnet $PEER_CONN_PARMS -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:registerCompany","0001","Hello","test place","Manufacturer"]}' >&log.txt
     res=$?
     set +x
   fi

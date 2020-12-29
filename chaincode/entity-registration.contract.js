@@ -14,7 +14,7 @@ class EntityRegistrationContext extends Context {
 
 class EntityRegistrationContract extends Contract {
   constructor() {
-    super("org.pharma-network.com.entityRegistrationContract");
+    super("org.pharma-network.pharmanet.entityRegistrationContract");
   }
 
   /**

@@ -31,7 +31,7 @@ function printHelp() {
   echo
   echo "	fabricNetwork.sh generate -c pharmachannel"
   echo "	fabricNetwork up -c pharmachannel -s couchdb"
-  echo "        fabricNetwork up -c pharmachannel -s couchdb -i 1.4.0"
+  echo "  fabricNetwork up -c pharmachannel -s couchdb -i 1.4.0"
   echo "	fabricNetwork up -l node"
   echo "	fabricNetwork down -c pharmachannel"
   echo
