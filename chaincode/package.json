@@ -13,7 +13,8 @@
   "scripts": {
     "format": "prettier --write **/** ",
     "lint": "eslint . --fix",
-    "start:dev": "fabric-chaincode-node start"
+    "start:dev": "fabric-chaincode-node start",
+    "start": "fabric-chaincode-node start --peer.address peer0.manufacturer.pharma-network.com:7053 --chaincode-id-name pharmanet:1.1"
   },
   "repository": {
     "type": "git",

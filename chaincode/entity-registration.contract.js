@@ -57,6 +57,13 @@ class EntityRegistrationContract extends Contract {
       return new Error("Already Existing Company");
     }
   }
+
+  async getCompany(ctx, companyCRN, companyName) {
+    validate("SS", companyCRN, companyName);
+    return await ctx.companyList.getCompany(
+      Company.makeKey([companyCRN, companyName])
+    );
+  }
 }
 
 module.exports = EntityRegistrationContract;

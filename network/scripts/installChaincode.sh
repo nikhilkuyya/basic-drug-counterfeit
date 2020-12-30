@@ -36,19 +36,19 @@ echo "Channel name : "$CHANNEL_NAME
 . scripts/utils.sh
 
 ## Install new version of chaincode on peer0 of all 3 orgs making them endorsers
-echo "Installing chaincode on peer0.manufacturer.certification-network.com ..."
+echo "Installing chaincode on peer0.manufacturer.pharma-network.com ..."
 installChaincode 0 'manufacturer' $VERSION
-echo "Installing chaincode on peer0.distributor.certification-network.com ..."
+echo "Installing chaincode on peer0.distributor.pharma-network.com ..."
 installChaincode 0 'distributor' $VERSION
-echo "Installing chaincode on peer0.transporter.certification-network.com ..."
+echo "Installing chaincode on peer0.transporter.pharma-network.com ..."
 installChaincode 0 'transporter' $VERSION
-echo "Installing chaincode on peer0.retailer.certification-network.com ..."
+echo "Installing chaincode on peer0.retailer.pharma-network.com ..."
 installChaincode 0 'retailer' $VERSION
-echo "Installing chaincode on peer0.consumer.certification-network.com ..."
+echo "Installing chaincode on peer0.consumer.pharma-network.com ..."
 installChaincode 0 'consumer' $VERSION
 
 # Instantiate chaincode on the channel using peer0.iit
-echo "Instantiating chaincode on channel using peer0.iit.certification-network.com ..."
+echo "Instantiating chaincode on channel using peer0.manufacturer.pharma-network.com ..."
 instantiateChaincode 0 'manufacturer' $VERSION
 
 echo

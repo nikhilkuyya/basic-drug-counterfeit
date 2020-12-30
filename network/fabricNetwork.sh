@@ -108,13 +108,13 @@ function checkPrereqs() {
   for UNSUPPORTED_VERSION in $BLACKLISTED_VERSIONS; do
     echo "$LOCAL_VERSION" | grep -q "$UNSUPPORTED_VERSION"
     if [ $? -eq 0 ]; then
-      echo "ERROR! Local Fabric binary version of $LOCAL_VERSION does not match this newer version of certification-network and is unsupported. Either move to a later version of Fabric or checkout an earlier version of certification-network."
+      echo "ERROR! Local Fabric binary version of $LOCAL_VERSION does not match this newer version of pharma-network and is unsupported. Either move to a later version of Fabric or checkout an earlier version of pharma-network."
       exit 1
     fi
 
     echo "$DOCKER_IMAGE_VERSION" | grep -q "$UNSUPPORTED_VERSION"
     if [ $? -eq 0 ]; then
-      echo "ERROR! Fabric Docker image version of $DOCKER_IMAGE_VERSION does not match this newer version of certification-network and is unsupported. Either move to a later version of Fabric or checkout an earlier version of certification-network."
+      echo "ERROR! Fabric Docker image version of $DOCKER_IMAGE_VERSION does not match this newer version of pharma-network and is unsupported. Either move to a later version of Fabric or checkout an earlier version of pharma-network."
       exit 1
     fi
   done
