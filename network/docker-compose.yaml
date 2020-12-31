@@ -234,7 +234,7 @@ services:
       - FABRIC_LOGGING_SPEC=INFO
       - CORE_PEER_ID=chaincode
       - CORE_PEER_TLS_ENABLED=false
-      - CORE_PEER_ADDRESS=manufacturer.pharma-network.com:7051
+      - CORE_PEER_ADDRESS=peer0.manufacturer.pharma-network.com:7051
       - CORE_PEER_LOCALMSPID=manufacturerMSP
       - CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/crypto/peerOrganizations/manufacturer.pharma-network.com/users/Admin@manufacturer.pharma-network.com/msp
       - CORE_TLS_CLIENT_KEY_PATH=/opt/gopath/src/crypto/peerOrganizations/manufacturer.pharma-network.com/users/Admin@manufacturer.pharma-network.com/tls/client.key

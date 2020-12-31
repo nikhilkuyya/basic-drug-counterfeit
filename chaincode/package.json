@@ -13,8 +13,9 @@
   "scripts": {
     "format": "prettier --write **/** ",
     "lint": "eslint . --fix",
-    "start:dev": "fabric-chaincode-node start",
-    "start": "fabric-chaincode-node start --peer.address peer0.manufacturer.pharma-network.com:7053 --chaincode-id-name pharmanet:1.1"
+    "start:none":"fabric-chaincode-node start",
+    "start:peer1:manu": "fabric-chaincode-node start --peer.address peer1.manufacturer.pharma-network.com:8053 --chaincode-id-name pharmanet:1.1",
+    "start:peer0:manu": "fabric-chaincode-node start --peer.address peer0.manufacturer.pharma-network.com:7053 --chaincode-id-name pharmanet:1.1"
   },
   "repository": {
     "type": "git",

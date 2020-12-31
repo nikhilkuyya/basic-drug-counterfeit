@@ -36,7 +36,7 @@ class EntityRegistrationContract extends Contract {
     organizationRole
   ) {
     /**Validation and seting the object */
-    validate("SSSS", companyCRN, companyName, location, organizationRole);
+    validate("SSSS", [companyCRN, companyName, location, organizationRole]);
     const company = Company.createInstance(
       companyCRN,
       companyName,
@@ -44,22 +44,22 @@ class EntityRegistrationContract extends Contract {
       organizationRole
     );
     company.setCompanyID(
-      this.companyList.getCompanyRegistrationCompositeKey(company)
+      ctx.companyList.getCompanyRegistrationCompositeKey(company)
     );
     company.setHiearchy();
-
     const companyWorldState = await ctx.companyList.getCompany(
       company.getKey()
     );
     if (companyWorldState === null) {
-      return await ctx.compnyList.addCompany(company);
+      await ctx.companyList.addCompany(company);
+      return company;
     } else {
       return new Error("Already Existing Company");
     }
   }
 
   async getCompany(ctx, companyCRN, companyName) {
-    validate("SS", companyCRN, companyName);
+    validate("SS", [companyCRN, companyName]);
     return await ctx.companyList.getCompany(
       Company.makeKey([companyCRN, companyName])
     );

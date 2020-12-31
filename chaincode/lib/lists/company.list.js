@@ -16,7 +16,7 @@ class CompanyList extends StateList {
   }
 
   async addCompany(company) {
-    return this.addState(company);
+    this.addState(company);
   }
 }
 

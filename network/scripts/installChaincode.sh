@@ -7,7 +7,7 @@ echo "\___ \    | |     / _ \   | |_) |   | |  "
 echo " ___) |   | |    / ___ \  |  _ <    | |  "
 echo "|____/    |_|   /_/   \_\ |_| \_\   |_|  "
 echo
-echo "Deploying Chaincode CERTNET On Certification Network"
+echo "Deploying Chaincode pharmanet On Pharma Network"
 echo
 CHANNEL_NAME="$1"
 DELAY="$2"
@@ -38,15 +38,19 @@ echo "Channel name : "$CHANNEL_NAME
 ## Install new version of chaincode on peer0 of all 3 orgs making them endorsers
 echo "Installing chaincode on peer0.manufacturer.pharma-network.com ..."
 installChaincode 0 'manufacturer' $VERSION
+installChaincode 1 'manufacturer' $VERSION
 echo "Installing chaincode on peer0.distributor.pharma-network.com ..."
 installChaincode 0 'distributor' $VERSION
+installChaincode 1 'distributor' $VERSION
 echo "Installing chaincode on peer0.transporter.pharma-network.com ..."
 installChaincode 0 'transporter' $VERSION
+installChaincode 1 'transporter' $VERSION
 echo "Installing chaincode on peer0.retailer.pharma-network.com ..."
 installChaincode 0 'retailer' $VERSION
+installChaincode 1 'retailer' $VERSION
 echo "Installing chaincode on peer0.consumer.pharma-network.com ..."
 installChaincode 0 'consumer' $VERSION
-
+installChaincode 1 'consumer' $VERSION
 # Instantiate chaincode on the channel using peer0.iit
 echo "Instantiating chaincode on channel using peer0.manufacturer.pharma-network.com ..."
 instantiateChaincode 0 'manufacturer' $VERSION
