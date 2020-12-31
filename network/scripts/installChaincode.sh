@@ -7,21 +7,21 @@ echo "\___ \    | |     / _ \   | |_) |   | |  "
 echo " ___) |   | |    / ___ \  |  _ <    | |  "
 echo "|____/    |_|   /_/   \_\ |_| \_\   |_|  "
 echo
-echo "Deploying Chaincode CERTNET On Certification Network"
+echo "Deploying Chaincode pharmanet On Pharma Network"
 echo
 CHANNEL_NAME="$1"
 DELAY="$2"
 LANGUAGE="$3"
 VERSION="$4"
 TYPE="$5"
-: ${CHANNEL_NAME:="certificationchannel"}
+: ${CHANNEL_NAME:="pharmachannel"}
 : ${DELAY:="5"}
 : ${LANGUAGE:="node"}
 : ${VERSION:=1.1}
 : ${TYPE="basic"}
 
 LANGUAGE=`echo "$LANGUAGE" | tr [:upper:] [:lower:]`
-ORGS="iit mhrd upgrad"
+ORGS="manufacturer distributor transporter retailer consumer"
 TIMEOUT=15
 
 if [ "$TYPE" = "basic" ]; then
@@ -36,16 +36,24 @@ echo "Channel name : "$CHANNEL_NAME
 . scripts/utils.sh
 
 ## Install new version of chaincode on peer0 of all 3 orgs making them endorsers
-echo "Installing chaincode on peer0.iit.certification-network.com ..."
-installChaincode 0 'iit' $VERSION
-echo "Installing chaincode on peer0.mhrd.certification-network.com ..."
-installChaincode 0 'mhrd' $VERSION
-echo "Installing chaincode on peer0.upgrad.certification-network.com ..."
-installChaincode 0 'upgrad' $VERSION
-
+echo "Installing chaincode on peer0.manufacturer.pharma-network.com ..."
+installChaincode 0 'manufacturer' $VERSION
+installChaincode 1 'manufacturer' $VERSION
+echo "Installing chaincode on peer0.distributor.pharma-network.com ..."
+installChaincode 0 'distributor' $VERSION
+installChaincode 1 'distributor' $VERSION
+echo "Installing chaincode on peer0.transporter.pharma-network.com ..."
+installChaincode 0 'transporter' $VERSION
+installChaincode 1 'transporter' $VERSION
+echo "Installing chaincode on peer0.retailer.pharma-network.com ..."
+installChaincode 0 'retailer' $VERSION
+installChaincode 1 'retailer' $VERSION
+echo "Installing chaincode on peer0.consumer.pharma-network.com ..."
+installChaincode 0 'consumer' $VERSION
+installChaincode 1 'consumer' $VERSION
 # Instantiate chaincode on the channel using peer0.iit
-echo "Instantiating chaincode on channel using peer0.iit.certification-network.com ..."
-instantiateChaincode 0 'iit' $VERSION
+echo "Instantiating chaincode on channel using peer0.manufacturer.pharma-network.com ..."
+instantiateChaincode 0 'manufacturer' $VERSION
 
 echo
 echo "========= All GOOD, Chaincode CERTNET Is Now Installed & Instantiated On Certification Network =========== "

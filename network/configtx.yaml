@@ -21,13 +21,13 @@ Organizations:
     Policies:
       Readers:
         Type: Signature
-        Rule: "OR('manufacturerMSP.admin', 'manufacturerMSP.peer', 'manufacturerMSP.client')"
+        Rule: "OR('manufacturerMSP.member')"
       Writers:
         Type: Signature
-        Rule: "OR('manufacturerMSP.admin', 'manufacturerMSP.peer', 'manufacturerMSP.client')"
+        Rule: "OR('manufacturerMSP.member')"
       Admins:
         Type: Signature
-        Rule: "OR('manufacturerMSP.admin', 'manufacturerMSP.peer', 'manufacturerMSP.client')"
+        Rule: "OR('manufacturerMSP.member')"
     AnchorPeers:
       - Host: peer0.manufacturer.pharma-network.com
         Port: 7051
@@ -39,13 +39,13 @@ Organizations:
     Policies:
       Readers:
         Type: Signature
-        Rule: "OR('distributorMSP.client', 'distributorMSP.peer', 'distributorMSP.admin')"
+        Rule: "OR('distributorMSP.member')"
       Writers:
         Type: Signature
-        Rule: "OR('distributorMSP.client', 'distributorMSP.peer', 'distributorMSP.admin')"
+        Rule: "OR('distributorMSP.member')"
       Admins:
         Type: Signature
-        Rule: "OR('distributorMSP.client', 'distributorMSP.peer', 'distributorMSP.admin')"
+        Rule: "OR('distributorMSP.member')"
     AnchorPeers:
       - Host: peer0.distributor.pharma-network.com
         Port: 9051

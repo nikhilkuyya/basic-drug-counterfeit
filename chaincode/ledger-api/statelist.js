@@ -1,7 +1,3 @@
-/*
-SPDX-License-Identifier: Apache-2.0
-*/
-
 "use strict";
 const State = require("./state.js");
 
@@ -19,6 +15,10 @@ class StateList {
     this.ctx = ctx;
     this.name = listName;
     this.supportedClasses = {};
+  }
+
+  getCompositeKey(state) {
+    return this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
   }
 
   /**
@@ -43,7 +43,7 @@ class StateList {
       State.splitKey(key)
     );
     let data = await this.ctx.stub.getState(ledgerKey);
-    if (data) {
+    if (data && data.toString().length != 0) {
       let state = State.deserialize(data, this.supportedClasses);
       return state;
     } else {

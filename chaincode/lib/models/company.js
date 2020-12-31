@@ -6,26 +6,26 @@ const HIERARCHYKEY = {
   Retailer: 3,
 };
 
-class Registration extends State {
+class Company extends State {
   constructor(obj) {
-    super(Registration.getClass(), [obj.companyCRN, obj.companyName]);
+    super(Company.getClass(), [obj.companyCRN, obj.companyName]);
     Object.assign(this, obj);
   }
 
   static getClass() {
-    return "org.pharma-network.com.companyRegistration";
+    return "org.pharma-network.com.company";
   }
 
   static fromBuffer(buffer) {
-    return Registration.deserialize(buffer);
+    return Company.deserialize(buffer);
   }
 
   static deserialize(buffer) {
-    return State.deserialize(buffer, Registration);
+    return State.deserialize(buffer, Company);
   }
 
   static createInstance(companyCRN, companyName, location, organizationRole) {
-    return new Registration({
+    return new Company({
       companyCRN: companyCRN,
       companyName: companyName,
       location: location,
@@ -53,9 +53,13 @@ class Registration extends State {
     Object.assign(this, { hierarchyKey });
   }
 
+  setCompanyID(companyID) {
+    Object.assign(this, { companyID });
+  }
+
   toBuffer() {
     return Buffer.from(JSON.stringify(this));
   }
 }
 
-module.exports = Registration;
+module.exports = Company;
