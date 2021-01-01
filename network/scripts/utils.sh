@@ -8,10 +8,15 @@
 
 ORDERER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/ordererOrganizations/pharma-network.com/orderers/orderer.pharma-network.com/msp/tlscacerts/tlsca.pharma-network.com-cert.pem
 PEER0_MANUFACTURER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/manufacturer.pharma-network.com/peers/peer0.manufacturer.pharma-network.com/tls/ca.crt
+PEER1_MANUFACTURER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/manufacturer.pharma-network.com/peers/peer1.manufacturer.pharma-network.com/tls/ca.crt
 PEER0_DISTRIBUTOR_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/distributor.pharma-network.com/peers/peer0.distributor.pharma-network.com/tls/ca.crt
+PEER1_DISTRIBUTOR_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/distributor.pharma-network.com/peers/peer1.distributor.pharma-network.com/tls/ca.crt
 PEER0_TRANSPORTER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/transporter.pharma-network.com/peers/peer0.transporter.pharma-network.com/tls/ca.crt
+PEER1_TRANSPORTER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/transporter.pharma-network.com/peers/peer1.transporter.pharma-network.com/tls/ca.crt
 PEER0_RETAILER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/retailer.pharma-network.com/peers/peer0.retailer.pharma-network.com/tls/ca.crt
+PEER1_RETAILER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/retailer.pharma-network.com/peers/peer1.retailer.pharma-network.com/tls/ca.crt
 PEER0_CONSUMER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/consumer.pharma-network.com/peers/peer0.consumer.pharma-network.com/tls/ca.crt
+PEER1_CONSUMER_CA=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/consumer.pharma-network.com/peers/peer1.consumer.pharma-network.com/tls/ca.crt
 
 
 
@@ -37,48 +42,54 @@ setGlobals() {
   ORG=$2
   if [ "$ORG" == 'manufacturer' ]; then
     CORE_PEER_LOCALMSPID="manufacturerMSP"
-    CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_MANUFACTURER_CA
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/manufacturer.pharma-network.com/users/Admin@manufacturer.pharma-network.com/msp
-    if [ "$PEER" -eq 0 ]; then
+    if [ "$PEER" -eq 0 ]; then      
+      CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_MANUFACTURER_CA
       CORE_PEER_ADDRESS=peer0.manufacturer.pharma-network.com:7051
-    else
+    else      
+      CORE_PEER_TLS_ROOTCERT_FILE=$PEER1_MANUFACTURER_CA
       CORE_PEER_ADDRESS=peer1.manufacturer.pharma-network.com:8051
     fi
   elif [ "$ORG" == 'distributor' ]; then
     CORE_PEER_LOCALMSPID="distributorMSP"
-    CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_DISTRIBUTOR_CA
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/distributor.pharma-network.com/users/Admin@distributor.pharma-network.com/msp
     if [ "$PEER" -eq 0 ]; then
+      CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_DISTRIBUTOR_CA
       CORE_PEER_ADDRESS=peer0.distributor.pharma-network.com:9051
     else
+      CORE_PEER_TLS_ROOTCERT_FILE=$PEER1_DISTRIBUTOR_CA
       CORE_PEER_ADDRESS=peer1.distributor.pharma-network.com:10051
     fi
 
   elif [ "$ORG" == 'transporter' ]; then
     CORE_PEER_LOCALMSPID="transporterMSP"
-    CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_TRANSPORTER_CA
+
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/transporter.pharma-network.com/users/Admin@transporter.pharma-network.com/msp
     if [ "$PEER" -eq 0 ]; then
+      CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_TRANSPORTER_CA
       CORE_PEER_ADDRESS=peer0.transporter.pharma-network.com:11051
     else
+      CORE_PEER_TLS_ROOTCERT_FILE=$PEER1_TRANSPORTER_CA
       CORE_PEER_ADDRESS=peer1.transporter.pharma-network.com:12051
     fi
   elif [ "$ORG" == 'retailer' ]; then
     CORE_PEER_LOCALMSPID="retailerMSP"
-    CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_RETAILER_CA
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/retailer.pharma-network.com/users/Admin@retailer.pharma-network.com/msp
     if [ "$PEER" -eq 0 ]; then
+      CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_RETAILER_CA
       CORE_PEER_ADDRESS=peer0.retailer.pharma-network.com:13051
     else
+      CORE_PEER_TLS_ROOTCERT_FILE=$PEER1_RETAILER_CA
       CORE_PEER_ADDRESS=peer1.retailer.pharma-network.com:14051
     fi
   elif [ "$ORG" == 'consumer' ]; then
     CORE_PEER_LOCALMSPID="consumerMSP"
-    CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_CONSUMER_CA
     CORE_PEER_MSPCONFIGPATH=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/consumer.pharma-network.com/users/Admin@consumer.pharma-network.com/msp
     if [ "$PEER" -eq 0 ]; then
+      CORE_PEER_TLS_ROOTCERT_FILE=$PEER0_CONSUMER_CA
       CORE_PEER_ADDRESS=peer0.consumer.pharma-network.com:15051
     else
+      CORE_PEER_TLS_ROOTCERT_FILE=$PEER1_CONSUMER_CA
       CORE_PEER_ADDRESS=peer1.consumer.pharma-network.com:16051
     fi
   else

@@ -6,7 +6,7 @@ services:
     dns_search: .
     environment:
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=network_pharma-sys-network      
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=network_pharma-sys-network
       - FABRIC_LOGGING_SPEC=INFO
       - GODEBUG=netdns=go
       - CORE_PEER_TLS_ENABLED=false
