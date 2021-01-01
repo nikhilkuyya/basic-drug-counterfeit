@@ -153,7 +153,7 @@ installChaincode() {
   set +x
   cat log.txt
   verifyResult $res "Chaincode installation on peer${PEER}.${ORG} has failed"
-  echo "===================== Chaincode is installed on peer${PEER}.${ORG} ===================== "
+  echo "===================== Chaincode is installed on peer${PEER}.${ORG} - ${VERSION} ===================== "
   echo
 }
 
@@ -168,18 +168,18 @@ instantiateChaincode() {
   # the "-o" option
   if [ -z "$CORE_PEER_TLS_ENABLED" -o "$CORE_PEER_TLS_ENABLED" = "false" ]; then
     set -x
-    peer chaincode instantiate -o orderer.pharma-network.com:7050 -C "$CHANNEL_NAME" -n pharmanet -l "${LANGUAGE}" -v "${VERSION}" -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:instantiate"]}' -P "OR ('manufacturerMSP.member','distributorMSP.member','transporterMSP.member','retailerMSP.member','consumerMSP.member')" >&log.txt
+    peer chaincode instantiate -o orderer.pharma-network.com:7050 -C "$CHANNEL_NAME" -n pharmanet -l "${LANGUAGE}" -v "${VERSION}" -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:instantiate"]}' -P "OR('manufacturerMSP.member','distributorMSP.member','transporterMSP.member','retailerMSP.member')" >&log.txt
     res=$?
     set +x
   else
     set -x
-    peer chaincode instantiate -o orderer.pharma-network.com:7050 --tls "$CORE_PEER_TLS_ENABLED" --cafile $ORDERER_CA -C $CHANNEL_NAME -n pharmanet -l ${LANGUAGE} -v ${VERSION} -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:instantiate"]}' -P "OR ('manufacturerMSP.member','distributorMSP.member','transporterMSP.member','retailerMSP.member','consumerMSP.member')" >&log.txt
+    peer chaincode instantiate -o orderer.pharma-network.com:7050 --tls "$CORE_PEER_TLS_ENABLED" --cafile $ORDERER_CA -C $CHANNEL_NAME -n pharmanet -l ${LANGUAGE} -v ${VERSION} -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:instantiate"]}' -P "OR('manufacturerMSP.member','distributorMSP.member','transporterMSP.member','retailerMSP.member')" >&log.txt
     res=$?
     set +x
   fi
   cat log.txt
   verifyResult $res "Chaincode instantiation on peer${PEER}.${ORG} on channel '$CHANNEL_NAME' failed"
-  echo "===================== Chaincode is instantiated on peer${PEER}.${ORG} on channel '$CHANNEL_NAME' ===================== "
+  echo "===================== Chaincode is instantiated on peer${PEER}.${ORG} on channel '$CHANNEL_NAME' with '$VERSION' ===================== "
   echo
 }
 
@@ -202,7 +202,7 @@ upgradeChaincode() {
   fi
   cat log.txt
   verifyResult $res "Chaincode upgrade on peer${PEER}.${ORG} has failed"
-  echo "===================== Chaincode is upgraded on peer${PEER}.${ORG} on channel '$CHANNEL_NAME' ===================== "
+  echo "===================== Chaincode is upgraded on peer${PEER}.${ORG} on channel '$CHANNEL_NAME' with $VERSION ===================== "
   echo
 }
 

@@ -37,24 +37,33 @@ class EntityRegistrationContract extends Contract {
   ) {
     /**Validation and seting the object */
     validate("SSSS", [companyCRN, companyName, location, organizationRole]);
-    const company = Company.createInstance(
-      companyCRN,
-      companyName,
-      location,
-      organizationRole
-    );
-    company.setCompanyID(
-      ctx.companyList.getCompanyRegistrationCompositeKey(company)
-    );
-    company.setHiearchy();
-    const companyWorldState = await ctx.companyList.getCompany(
-      company.getKey()
-    );
-    if (companyWorldState === null) {
-      await ctx.companyList.addCompany(company);
-      return company;
+    if (
+      this._validateOrganizationRole(
+        organizationRole,
+        ctx.clientIdentity.getMSPID()
+      )
+    ) {
+      const company = Company.createInstance(
+        companyCRN,
+        companyName,
+        location,
+        organizationRole
+      );
+      company.setCompanyID(
+        ctx.companyList.getCompanyRegistrationCompositeKey(company)
+      );
+      company.setHiearchy();
+      const companyWorldState = await ctx.companyList.getCompany(
+        company.getKey()
+      );
+      if (companyWorldState === null) {
+        await ctx.companyList.addCompany(company);
+        return company;
+      } else {
+        return new Error("Already Existing Company");
+      }
     } else {
-      return new Error("Already Existing Company");
+      return new Error("Invalid Access");
     }
   }
 
@@ -63,6 +72,30 @@ class EntityRegistrationContract extends Contract {
     return await ctx.companyList.getCompany(
       Company.makeKey([companyCRN, companyName])
     );
+  }
+
+  _validateOrganizationRole(organizationRole, mspID) {
+    let isValid = false;
+    if (organizationRole) {
+      switch (mspID) {
+        case "manufacturerMSP":
+          isValid = organizationRole === "Manufacturer";
+          break;
+        case "retailerMSP":
+          isValid = organizationRole === "Retailer";
+          break;
+        case "transporterMSP":
+          isValid = organizationRole === "Transporter";
+          break;
+        case "distributorMSP":
+          isValid = organizationRole === "Distributor";
+          break;
+        default:
+          isValid = false;
+          break;
+      }
+    }
+    return isValid;
   }
 }
 
