@@ -57,13 +57,13 @@ Organizations:
     Policies:
       Readers:
         Type: Signature
-        Rule: "OR('transporterMSP.client', 'transporterMSP.peer', 'transporterMSP.admin' )"
+        Rule: "OR('transporterMSP.member' )"
       Writers:
         Type: Signature
-        Rule: "OR('transporterMSP.client', 'transporterMSP.peer', 'transporterMSP.admin' )"
+        Rule: "OR('transporterMSP.member' )"
       Admins:
         Type: Signature
-        Rule: "OR('transporterMSP.client', 'transporterMSP.peer', 'transporterMSP.admin' )"
+        Rule: "OR('transporterMSP.member')"
     AnchorPeers:
       - Host: peer0.transporter.pharma-network.com
         Port: 11051
@@ -75,13 +75,13 @@ Organizations:
     Policies:
       Readers:
         Type: Signature
-        Rule: "OR('retailerMSP.client', 'retailerMSP.admin', 'retailerMSP.peer')"
+        Rule: "OR('retailerMSP.member')"
       Writers:
         Type: Signature
-        Rule: "OR('retailerMSP.client', 'retailerMSP.admin', 'retailerMSP.peer')"
+        Rule: "OR('retailerMSP.member')"
       Admins:
         Type: Signature
-        Rule: "OR('retailerMSP.client', 'retailerMSP.admin', 'retailerMSP.peer')"
+        Rule: "OR('retailerMSP.member')"
     AnchorPeers:
       - Host: peer0.retailer.pharma-network.com
         Port: 13051
@@ -93,13 +93,10 @@ Organizations:
     Policies:
       Readers:
         Type: Signature
-        Rule: "OR('consumerMSP.client', 'consumerMSP.admin', 'consumerMSP.peer')"
-      Writers:
-        Type: Signature
-        Rule: "OR('consumerMSP.client', 'consumerMSP.admin', 'consumerMSP.peer')"
+        Rule: "OR('consumerMSP.member')"    
       Admins:
         Type: Signature
-        Rule: "OR('consumerMSP.client', 'consumerMSP.admin', 'consumerMSP.peer')"
+        Rule: "OR('consumerMSP.member')"
     AnchorPeers:
       - Host: peer0.consumer.pharma-network.com
         Port: 15051
