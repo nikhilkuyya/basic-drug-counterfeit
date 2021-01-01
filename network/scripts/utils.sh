@@ -153,7 +153,7 @@ installChaincode() {
   set +x
   cat log.txt
   verifyResult $res "Chaincode installation on peer${PEER}.${ORG} has failed"
-  echo "===================== Chaincode is installed on peer${PEER}.${ORG} ===================== "
+  echo "===================== Chaincode is installed on peer${PEER}.${ORG} - ${VERSION} ===================== "
   echo
 }
 
@@ -179,7 +179,7 @@ instantiateChaincode() {
   fi
   cat log.txt
   verifyResult $res "Chaincode instantiation on peer${PEER}.${ORG} on channel '$CHANNEL_NAME' failed"
-  echo "===================== Chaincode is instantiated on peer${PEER}.${ORG} on channel '$CHANNEL_NAME' ===================== "
+  echo "===================== Chaincode is instantiated on peer${PEER}.${ORG} on channel '$CHANNEL_NAME' with '$VERSION' ===================== "
   echo
 }
 
@@ -202,7 +202,7 @@ upgradeChaincode() {
   fi
   cat log.txt
   verifyResult $res "Chaincode upgrade on peer${PEER}.${ORG} has failed"
-  echo "===================== Chaincode is upgraded on peer${PEER}.${ORG} on channel '$CHANNEL_NAME' ===================== "
+  echo "===================== Chaincode is upgraded on peer${PEER}.${ORG} on channel '$CHANNEL_NAME' with $VERSION ===================== "
   echo
 }
 

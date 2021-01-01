@@ -43,7 +43,7 @@ class StateList {
       State.splitKey(key)
     );
     let data = await this.ctx.stub.getState(ledgerKey);
-    if (data && data.toString().length != 0) {
+    if (data && data.toString().length !== 0) {
       let state = State.deserialize(data, this.supportedClasses);
       return state;
     } else {

@@ -93,7 +93,10 @@ Organizations:
     Policies:
       Readers:
         Type: Signature
-        Rule: "OR('consumerMSP.member')"    
+        Rule: "OR('consumerMSP.member')"
+      Writers:
+        Type: Signature
+        Rule: "OR('consumerMSP.member')"
       Admins:
         Type: Signature
         Rule: "OR('consumerMSP.member')"
