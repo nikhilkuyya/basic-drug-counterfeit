@@ -60,10 +60,10 @@ class EntityRegistrationContract extends Contract {
         await ctx.companyList.addCompany(company);
         return company;
       } else {
-        return new Error("Already Existing Company");
+        throw new Error("Already Existing Company");
       }
     } else {
-      return new Error("Invalid Access");
+      throw new Error("Invalid Access");
     }
   }
 
