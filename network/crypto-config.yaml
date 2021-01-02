@@ -6,35 +6,35 @@ OrdererOrgs:
 PeerOrgs:
   - Name: Distributor
     Domain: distributor.pharma-network.com
-    EnableOUs: true
+    EnableNodeOUs: true
     Template:
       Count: 2
     Users:
       Count: 0
   - Name: Manufacturer
     Domain: manufacturer.pharma-network.com
-    EnableOUs: true
+    EnableNodeOUs: true
     Template:
       Count: 2
     Users:
       Count: 0
   - Name: Transporter
     Domain: transporter.pharma-network.com
-    EnableOUs: true
+    EnableNodeOUs: true
     Template:
       Count: 2
     Users:
       Count: 0
   - Name: Retailer
     Domain: retailer.pharma-network.com
-    EnableOUs: true
+    EnableNodeOUs: true
     Template:
       Count: 2
     Users:
       Count: 0
   - Name: Consumer
     Domain: consumer.pharma-network.com
-    EnableOUs: true
+    EnableNodeOUs: true
     Template:
       Count: 2
     Users:
