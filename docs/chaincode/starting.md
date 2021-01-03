@@ -12,6 +12,8 @@
 - peer sshed and also start the chaincode-node
 - chaincode peer should be started with that peer pointed
 
+---
+
 peer chaincode invoke -o orderer.pharma-network.com:7050 -C pharmachannel -n pharmanet -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:registerCompany","0001","Hello1","test place","Manufacturer"]}'
 
 peer chaincode query -o orderer.pharma-network.com:7050 -C pharmachannel -n pharmanet -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:getCompany","0001","Hello1"]}'
@@ -35,3 +37,7 @@ peer chaincode invoke -o orderer.pharma-network.com:7050 -C pharmachannel -n pha
 peer chaincode invoke -o orderer.pharma-network.com:7050 -C pharmachannel -n pharmanet -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:registerCompany","0007","Hello7","test place","Retailer"]}'
 
 peer chaincode invoke -o orderer.pharma-network.com:7050 -C pharmachannel -n pharmanet -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:registerCompany","0008","Hello8","test place","Retailer"]}'
+
+---
+
+peer chaincode invoke -o orderer.pharma-network.com:7050 -C pharmachannel -n pharmanet -c '{"Args":["org.pharma-network.pharmanet.drugRegistrationContract:registerDrug","P1","1","06-12-2020","06-01-2021","0001","Hello1"]}'

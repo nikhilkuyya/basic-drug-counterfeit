@@ -17,6 +17,10 @@ class StateList {
     this.supportedClasses = {};
   }
 
+  getPartialCompositeKey(...args) {
+    return this.ctx.stub.createCompositeKey(this.name, State.makeKey(args));
+  }
+
   getCompositeKey(state) {
     return this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
   }

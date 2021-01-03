@@ -11,7 +11,8 @@ class CompanyList extends StateList {
     return this.getCompositeKey(company);
   }
 
-  async getCompany(companyKey) {
+  async getCompany(companyCRN, companyName) {
+    const companyKey = Company.makeKey([companyCRN, companyName]);
     return this.getState(companyKey);
   }
 

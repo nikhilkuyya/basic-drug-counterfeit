@@ -57,6 +57,10 @@ class Company extends State {
     Object.assign(this, { companyID });
   }
 
+  getCompanyID() {
+    return this.companyID;
+  }
+
   toBuffer() {
     return Buffer.from(JSON.stringify(this));
   }
