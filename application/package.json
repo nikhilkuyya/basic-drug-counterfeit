@@ -1,0 +1,33 @@
+{
+  "name": "drug-counterfeit-application",
+  "version": "0.0.1",
+  "description": "Sample Problem of Drug Couterfeit solution",
+  "main": "index.js",
+  "scripts": {
+    "test": "rm -rf identities && nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/nikhilkuyya/basic-drug-counterfeit.git"
+  },
+  "keywords": [
+    "DrugCounterfeit",
+    "Capstone"
+  ],
+  "author": "Nikhil Kuyya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikhilkuyya/basic-drug-counterfeit/issues"
+  },
+  "homepage": "https://github.com/nikhilkuyya/basic-drug-counterfeit#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fabric-client": "~1.4.4",
+    "fabric-network": "~1.4.4",
+    "js-yaml": "^3.14.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
