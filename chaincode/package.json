@@ -13,6 +13,8 @@
   "scripts": {
     "format": "prettier --write **/** ",
     "lint": "eslint . --fix",
+    "format:test": "npm run format && npm run lint",
+    "setup": "npm rebuild && npm install",
     "start:none": "fabric-chaincode-node start",
     "start:peer0:manu": "fabric-chaincode-node start --peer.address peer0.manufacturer.pharma-network.com:7053 --chaincode-id-name pharmanet:1.1",
     "start:peer1:manu": "fabric-chaincode-node start --peer.address peer1.manufacturer.pharma-network.com:8053 --chaincode-id-name pharmanet:1.1",

@@ -55,47 +55,47 @@ const walletList = [
     certificatePath:
       "../network/crypto-config/peerOrganizations/manufacturer.pharma-network.com/users/Admin@manufacturer.pharma-network.com/msp/signcerts/Admin@manufacturer.pharma-network.com-cert.pem",
     privateKeyPath:
-      "../network/crypto-config/peerOrganizations/manufacturer.pharma-network.com/users/Admin@manufacturer.pharma-network.com/msp/keystore/b96756a80b91b7ed7a439696bca81021e8763cb48bb1395b34876c456c35e2b9_sk",
+      "../network/crypto-config/peerOrganizations/manufacturer.pharma-network.com/users/Admin@manufacturer.pharma-network.com/msp/keystore/d8874ee318a3e14872f79ff59a5bd82fb2cdabb2d6ec72e9afbd73ed42aa659f_sk",
     walletPath: constants.manufacturer.walletPath,
     identityLabel: constants.manufacturer.fabricUserName,
     identityMSP: constants.manufacturer.identityMSP,
   },
-  // {
-  //   certificatePath:
-  //     "../network/crypto-config/peerOrganizations/distributor.pharma-network.com/users/Admin@distributor.pharma-network.com/msp/signcerts/Admin@distributor.pharma-network.com-cert.pem",
-  //   privateKeyPath:
-  //     "../network/crypto-config/peerOrganizations/distributor.pharma-network.com/users/Admin@distributor.pharma-network.com/msp/keystore/44e35eddde5f4642d74674d6829843e201914caaf0661aafa62d9e4fc06fe2f1_sk",
-  //   walletPath: "./identities/distributor",
-  //   identityLabel: "DISTRIBUTOR_ADMIN",
-  //   identityMSP: "distributorMSP",
-  // },
-  // {
-  //   certificatePath:
-  //     "../network/crypto-config/peerOrganizations/transporter.pharma-network.com/users/Admin@transporter.pharma-network.com/msp/signcerts/Admin@transporter.pharma-network.com-cert.pem",
-  //   privateKeyPath:
-  //     "../network/crypto-config/peerOrganizations/transporter.pharma-network.com/users/Admin@transporter.pharma-network.com/msp/keystore/44e35eddde5f4642d74674d6829843e201914caaf0661aafa62d9e4fc06fe2f1_sk",
-  //   walletPath: "./identities/transporter",
-  //   identityLabel: "TRANSPORTER_ADMIN",
-  //   identityMSP: "transporterMSP",
-  // },
-  // {
-  //   certificatePath:
-  //     "../network/crypto-config/peerOrganizations/retailer.pharma-network.com/users/Admin@retailer.pharma-network.com/msp/signcerts/Admin@retailer.pharma-network.com-cert.pem",
-  //   privateKeyPath:
-  //     "../network/crypto-config/peerOrganizations/retailer.pharma-network.com/users/Admin@retailer.pharma-network.com/msp/keystore/44e35eddde5f4642d74674d6829843e201914caaf0661aafa62d9e4fc06fe2f1_sk",
-  //   walletPath: "./identities/retailer",
-  //   identityLabel: "RETAILER_ADMIN",
-  //   identityMSP: "retailerMSP",
-  // },
-  // {
-  //   certificatePath:
-  //     "../network/crypto-config/peerOrganizations/consumer.pharma-network.com/users/Admin@consumer.pharma-network.com/msp/signcerts/Admin@consumer.pharma-network.com-cert.pem",
-  //   privateKeyPath:
-  //     "../network/crypto-config/peerOrganizations/consumer.pharma-network.com/users/Admin@consumer.pharma-network.com/msp/keystore/44e35eddde5f4642d74674d6829843e201914caaf0661aafa62d9e4fc06fe2f1_sk",
-  //   walletPath: "./identities/consumer",
-  //   identityLabel: "CONSUMER_ADMIN",
-  //   identityMSP: "consumerMSP",
-  // },
+  {
+    certificatePath:
+      "../network/crypto-config/peerOrganizations/distributor.pharma-network.com/users/Admin@distributor.pharma-network.com/msp/signcerts/Admin@distributor.pharma-network.com-cert.pem",
+    privateKeyPath:
+      "../network/crypto-config/peerOrganizations/distributor.pharma-network.com/users/Admin@distributor.pharma-network.com/msp/keystore/7a901ec5f53264dfa88f441b0123b8e0c4f427e75c8835d94525ad3fd0645115_sk",
+    walletPath: "./identities/distributor",
+    identityLabel: "DISTRIBUTOR_ADMIN",
+    identityMSP: "distributorMSP",
+  },
+  {
+    certificatePath:
+      "../network/crypto-config/peerOrganizations/transporter.pharma-network.com/users/Admin@transporter.pharma-network.com/msp/signcerts/Admin@transporter.pharma-network.com-cert.pem",
+    privateKeyPath:
+      "../network/crypto-config/peerOrganizations/transporter.pharma-network.com/users/Admin@transporter.pharma-network.com/msp/keystore/7522c60a9a4aa47a79e72437cc36863d0c5f9809bccc8a5a0d316cf85d63c9d1_sk",
+    walletPath: "./identities/transporter",
+    identityLabel: "TRANSPORTER_ADMIN",
+    identityMSP: "transporterMSP",
+  },
+  {
+    certificatePath:
+      "../network/crypto-config/peerOrganizations/retailer.pharma-network.com/users/Admin@retailer.pharma-network.com/msp/signcerts/Admin@retailer.pharma-network.com-cert.pem",
+    privateKeyPath:
+      "../network/crypto-config/peerOrganizations/retailer.pharma-network.com/users/Admin@retailer.pharma-network.com/msp/keystore/078bdc1a2d3b9ba321d3986a361876fa26e7437883906e7cc77eb9f2b1982560_sk",
+    walletPath: "./identities/retailer",
+    identityLabel: "RETAILER_ADMIN",
+    identityMSP: "retailerMSP",
+  },
+  {
+    certificatePath:
+      "../network/crypto-config/peerOrganizations/consumer.pharma-network.com/users/Admin@consumer.pharma-network.com/msp/signcerts/Admin@consumer.pharma-network.com-cert.pem",
+    privateKeyPath:
+      "../network/crypto-config/peerOrganizations/consumer.pharma-network.com/users/Admin@consumer.pharma-network.com/msp/keystore/18097ec9c9c2d4f0ae6807edfaed94addee998d2732ce175da03ea59d9800e76_sk",
+    walletPath: "./identities/consumer",
+    identityLabel: "CONSUMER_ADMIN",
+    identityMSP: "consumerMSP",
+  },
 ];
 
 walletList.forEach((wallet) => {

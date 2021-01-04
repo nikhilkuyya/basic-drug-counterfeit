@@ -5,7 +5,8 @@ let gateway;
 
 // What is the username of this Client user accessing the network -- MANUFACTURER_ADMIN
 // './connection-profiles/manufacturer.yaml'
-async function getRegistrationContractInstance(
+async function getContractInstance(
+  contractName,
   walletPath,
   fabricUserName,
   connectionProfilePath
@@ -43,10 +44,7 @@ async function getRegistrationContractInstance(
   // @param Name of chaincode
   // @param Name of smart contract
   console.log(".....Connecting to Pharmanet Smart Contract");
-  const contract = channel.getContract(
-    "pharmanet",
-    "org.pharma-network.pharmanet.entityRegistrationContract"
-  );
+  const contract = channel.getContract("pharmanet", contractName);
   return contract;
 }
 
@@ -55,5 +53,12 @@ function disconnect() {
   gateway.disconnect();
 }
 
-module.exports.getRegistrationContractInstance = getRegistrationContractInstance;
+module.exports.getRegistrationContractInstance = getContractInstance.bind(
+  null,
+  "org.pharma-network.pharmanet.entityRegistrationContract"
+);
+module.exports.getDrugRegistrationContractInstance = getContractInstance.bind(
+  null,
+  "org.pharma-network.pharmanet.drugRegistrationContract"
+);
 module.exports.disconnect = disconnect;

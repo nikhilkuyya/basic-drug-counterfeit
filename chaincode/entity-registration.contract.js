@@ -5,7 +5,7 @@ const Company = require("./lib/models/company");
 /**
  * A Entity Registration Context provides easy way to access the entities
  */
-class EntityRegistrationContext extends Context {
+class EntityContext extends Context {
   constructor() {
     super();
     this.companyList = new CompanyList(this);
@@ -21,7 +21,7 @@ class EntityRegistrationContract extends Contract {
    * Defines the Context for this Entity Registration.
    */
   createContext() {
-    return new EntityRegistrationContext();
+    return new EntityContext();
   }
 
   async instantiate(ctx) {
@@ -54,7 +54,8 @@ class EntityRegistrationContract extends Contract {
       );
       company.setHiearchy();
       const companyWorldState = await ctx.companyList.getCompany(
-        company.getKey()
+        companyCRN,
+        companyName
       );
       if (companyWorldState === null) {
         await ctx.companyList.addCompany(company);
@@ -69,30 +70,28 @@ class EntityRegistrationContract extends Contract {
 
   async getCompany(ctx, companyCRN, companyName) {
     validate("SS", [companyCRN, companyName]);
-    return await ctx.companyList.getCompany(
-      Company.makeKey([companyCRN, companyName])
-    );
+    return await ctx.companyList.getCompany(companyCRN, companyName);
   }
 
   _validateOrganizationRole(organizationRole, mspID) {
     let isValid = false;
     if (organizationRole) {
       switch (mspID) {
-        case "manufacturerMSP":
-          isValid = organizationRole === "Manufacturer";
-          break;
-        case "retailerMSP":
-          isValid = organizationRole === "Retailer";
-          break;
-        case "transporterMSP":
-          isValid = organizationRole === "Transporter";
-          break;
-        case "distributorMSP":
-          isValid = organizationRole === "Distributor";
-          break;
-        default:
-          isValid = false;
-          break;
+      case "manufacturerMSP":
+        isValid = organizationRole === "Manufacturer";
+        break;
+      case "retailerMSP":
+        isValid = organizationRole === "Retailer";
+        break;
+      case "transporterMSP":
+        isValid = organizationRole === "Transporter";
+        break;
+      case "distributorMSP":
+        isValid = organizationRole === "Distributor";
+        break;
+      default:
+        isValid = false;
+        break;
       }
     }
     return isValid;
