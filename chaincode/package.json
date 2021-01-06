@@ -25,7 +25,9 @@
     "start:peer0:retailer": "fabric-chaincode-node start --peer.address peer0.retailer.pharma-network.com:13053 --chaincode-id-name pharmanet:1.1",
     "start:peer1:retailer": "fabric-chaincode-node start --peer.address peer1.retailer.pharma-network.com:14053 --chaincode-id-name pharmanet:1.1",
     "start:peer0:consumer": "fabric-chaincode-node start --peer.address peer0.consumer.pharma-network.com:15053 --chaincode-id-name pharmanet:1.1",
-    "start:peer1:consumer": "fabric-chaincode-node start --peer.address peer1.consumer.pharma-network.com:16053 --chaincode-id-name pharmanet:1.1"
+    "start:peer1:consumer": "fabric-chaincode-node start --peer.address peer1.consumer.pharma-network.com:16053 --chaincode-id-name pharmanet:1.1",
+    "start:peers": "npm run start:peer0:manu & npm run start:peer1:dist & npm run start:peer0:retailer & npm run start:peer0:transporter & npm run start:peer0:consumer",
+    "start": "npm run setup && npm run start:peers"
   },
   "repository": {
     "type": "git",

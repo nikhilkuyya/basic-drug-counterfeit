@@ -10,7 +10,7 @@ async function getCompany(companyCRN, companyName) {
       manufacturer.connectionProfilePath
     );
     const entityBuffer = await registrationSmartContract.submitTransaction(
-      constants.entity.get,
+      constants.entitySC.getCompany,
       companyCRN,
       companyName
     );

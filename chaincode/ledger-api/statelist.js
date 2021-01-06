@@ -26,12 +26,42 @@ class StateList {
   }
 
   /**
+   *This will return the StateQueryIterator.
+   * @param {string[]} partialKey : partial composite key
+   */
+  async getStateByPartialCompositeKey(partialKey) {
+    try {
+      const res = await this.ctx.stub.getStateByPartialCompositeKey(
+        this.name,
+        State.splitKey(partialKey)
+      );
+      const list = [];
+      while (true) {
+        let val = await res.next();
+        if (!val || !val.value || !val.value.key) {
+          break;
+        }
+        let compositKey = val.value.key;
+        const state = await this.getStateByCompositeKey(compositKey);
+        list.push(state);
+        if (val.done) {
+          break;
+        }
+      }
+      await res.close();
+      return list;
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+  /**
    * Add a state to the list. Creates a new state in worldstate with
    * appropriate composite key.  Note that state defines its own key.
    * State object is serialized before writing.
    */
   async addState(state) {
     let key = this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
+    console.log("add state", this.name, state.getSplitKey(), key);
     let data = State.serialize(state);
     await this.ctx.stub.putState(key, data);
   }
@@ -46,9 +76,16 @@ class StateList {
       this.name,
       State.splitKey(key)
     );
-    let data = await this.ctx.stub.getState(ledgerKey);
+    const ledgerState = await this.getStateByCompositeKey(ledgerKey);
+    return ledgerState;
+  }
+
+  async getStateByCompositeKey(ledgerCompositeKey) {
+    let data = await this.ctx.stub.getState(ledgerCompositeKey);
+    console.log("Buffer :", data.toString().length);
     if (data && data.toString().length !== 0) {
       let state = State.deserialize(data, this.supportedClasses);
+      console.log("state : ", state);
       return state;
     } else {
       return null;

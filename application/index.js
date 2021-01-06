@@ -12,6 +12,7 @@ const {
   reatilerRegistration,
   transporterRegistration,
   drugRegistration,
+  drugs,
 } = require("./registration");
 
 // Define Express app settings
@@ -42,7 +43,7 @@ app.post("/addToWallet", (req, res) => {
       res.status(500).send(result);
     });
 });
-
+//#region  "Initiation"
 app.post("/manufacturer/registration", (req, res) => {
   manufacturerRegister
     .execute(
@@ -96,7 +97,7 @@ app.post("/distributor/registration", (req, res) => {
     });
 });
 app.post("/retailer/registration", (req, res) => {
-  manufacturerRegister
+  reatilerRegistration
     .execute(
       req.body.companyCRN,
       req.body.companyName,
@@ -121,7 +122,6 @@ app.post("/retailer/registration", (req, res) => {
       res.status(500).send(result);
     });
 });
-
 app.post("/transporter/registration", (req, res) => {
   transporterRegistration
     .execute(
@@ -148,7 +148,6 @@ app.post("/transporter/registration", (req, res) => {
       res.status(500).send(result);
     });
 });
-
 app.post("/drug/registration", (req, res) => {
   const body = req.body;
   drugRegistration
@@ -157,8 +156,7 @@ app.post("/drug/registration", (req, res) => {
       body.serialNo,
       body.mfgDate,
       body.expDate,
-      body.companyCRN,
-      body.companyName
+      body.companyCRN
     )
     .then((drug) => {
       console.log("New Drug Entity created");
@@ -178,7 +176,6 @@ app.post("/drug/registration", (req, res) => {
       res.status(500).send(result);
     });
 });
-
 app.get("/company", (req, res) => {
   company
     .execute(req.body.companyCRN, req.body.companyName)
@@ -199,6 +196,28 @@ app.get("/company", (req, res) => {
       res.status(500).send(result);
     });
 });
+app.get("/drugs", (req, res) => {
+  console.log(req.body.drugName);
+  drugs
+    .execute(req.body.drugName)
+    .then((drugs) => {
+      const result = {
+        status: "success",
+        message: "Drugs",
+        drugs: drugs,
+      };
+      res.json(result);
+    })
+    .catch((e) => {
+      const result = {
+        statue: "error",
+        message: "Failed",
+        error: e,
+      };
+      res.status(500).send(result);
+    });
+});
+//#endregion
 
 app.listen(port, () =>
   console.log(`Distributed Durg Counterfeit App listening on port ${port}!`)
