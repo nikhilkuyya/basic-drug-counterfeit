@@ -3,19 +3,11 @@ const {
   getDrugRegistrationContractInstance,
 } = require("../contractHelper");
 
-const { registerCompany } = require("./registration.service");
-
 const manufacturerWalletPath = "./identities/manufacturer";
 
 const constants = require("../constants");
 
-async function drugRegistration(
-  drugName,
-  serialNo,
-  mfgDate,
-  expDate,
-  companyCRN
-) {
+async function fetchDrugs(drugName) {
   try {
     const registrationDrugContract = await getDrugRegistrationContractInstance(
       constants.manufacturer.walletPath,
@@ -24,12 +16,8 @@ async function drugRegistration(
     );
     console.log("... Registering the Drug");
     const drugBuffer = await registrationDrugContract.submitTransaction(
-      constants.entitySC.registerDrug,
-      drugName,
-      serialNo,
-      mfgDate,
-      expDate,
-      companyCRN
+      constants.entitySC.getDrugs,
+      drugName
     );
     console.log(".... Processing Drug Registration Transaction \n\n ");
     let newDrug = JSON.parse(drugBuffer.toString());
@@ -45,4 +33,4 @@ async function drugRegistration(
   }
 }
 
-module.exports.execute = drugRegistration;
+module.exports.execute = fetchDrugs;

@@ -52,6 +52,11 @@ class DrugRegistrationContract extends Contract {
     await ctx.drugList.addDrug(drugPayLoad);
     return drugPayLoad;
   }
+
+  async getDrugs(ctx, drugName) {
+    validate("S", [drugName]);
+    return await ctx.drugList.getDrugsByName(drugName);
+  }
 }
 
 module.exports = DrugRegistrationContract;

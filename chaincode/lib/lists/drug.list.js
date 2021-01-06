@@ -7,8 +7,9 @@ class DrugList extends StateList {
     this.use(Drug);
   }
 
-  getDrugPartialKey(drugName) {
-    return this.getPartialCompositeKey(drugName);
+  getDrugsByName(drugName) {
+    const partialKey = Drug.makeKey([drugName]);
+    return this.getStateByPartialCompositeKey(partialKey);
   }
 
   getDrugCompositeKey(drug) {

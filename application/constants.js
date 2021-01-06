@@ -25,8 +25,10 @@ module.exports = {
     fabricUserName: "CONSUMER_ADMIN",
     connectionProfilePath: "./connection-profiles/consumer.yaml",
   },
-  entity: {
-    register: "registerCompany",
-    get: "getCompany",
+  entitySC: {
+    registerCompany: "registerCompany",
+    getCompany: "getCompany",
+    registerDrug: "registerDrug",
+    getDrugs: "getDrugs",
   },
 };

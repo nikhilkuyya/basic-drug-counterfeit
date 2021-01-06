@@ -1,4 +1,5 @@
 // Create a new Entity Registration
+const constants = require("../constants");
 async function registerCompany(
   registrationCompanyContract,
   companyCRN,
@@ -8,7 +9,7 @@ async function registerCompany(
 ) {
   console.log(".....Register then company");
   const companyBuffer = await registrationCompanyContract.submitTransaction(
-    "registerCompany",
+    constants.entitySC.registerCompany,
     companyCRN,
     companyName,
     location,
