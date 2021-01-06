@@ -20,10 +20,10 @@ async function fetchDrugs(drugName) {
       drugName
     );
     console.log(".... Processing Drug Registration Transaction \n\n ");
-    let newDrug = JSON.parse(drugBuffer.toString());
-    console.log(newDrug);
+    let drugs = JSON.parse(drugBuffer.toString());
+    console.log(drugs);
     console.log("\n\n ...Register new Drug Complete! ");
-    return newDrug;
+    return drugs;
   } catch (e) {
     console.log(`\n\n ${e} \n\n`);
     throw new Error(e);
