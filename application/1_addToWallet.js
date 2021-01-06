@@ -55,7 +55,7 @@ const walletList = [
     certificatePath:
       "../network/crypto-config/peerOrganizations/manufacturer.pharma-network.com/users/Admin@manufacturer.pharma-network.com/msp/signcerts/Admin@manufacturer.pharma-network.com-cert.pem",
     privateKeyPath:
-      "../network/crypto-config/peerOrganizations/manufacturer.pharma-network.com/users/Admin@manufacturer.pharma-network.com/msp/keystore/d8874ee318a3e14872f79ff59a5bd82fb2cdabb2d6ec72e9afbd73ed42aa659f_sk",
+      "../network/crypto-config/peerOrganizations/manufacturer.pharma-network.com/users/Admin@manufacturer.pharma-network.com/msp/keystore/95649e36d332e5c777d910ee6496eff0aac28e9fe738b9f09ef03a9871269cc2_sk",
     walletPath: constants.manufacturer.walletPath,
     identityLabel: constants.manufacturer.fabricUserName,
     identityMSP: constants.manufacturer.identityMSP,
@@ -64,7 +64,7 @@ const walletList = [
     certificatePath:
       "../network/crypto-config/peerOrganizations/distributor.pharma-network.com/users/Admin@distributor.pharma-network.com/msp/signcerts/Admin@distributor.pharma-network.com-cert.pem",
     privateKeyPath:
-      "../network/crypto-config/peerOrganizations/distributor.pharma-network.com/users/Admin@distributor.pharma-network.com/msp/keystore/7a901ec5f53264dfa88f441b0123b8e0c4f427e75c8835d94525ad3fd0645115_sk",
+      "../network/crypto-config/peerOrganizations/distributor.pharma-network.com/users/Admin@distributor.pharma-network.com/msp/keystore/f5efaad95febf9c5fe42e1255972f10e2cef0a36a5f0c242af0901b11b0b7fd2_sk",
     walletPath: "./identities/distributor",
     identityLabel: "DISTRIBUTOR_ADMIN",
     identityMSP: "distributorMSP",
@@ -73,7 +73,7 @@ const walletList = [
     certificatePath:
       "../network/crypto-config/peerOrganizations/transporter.pharma-network.com/users/Admin@transporter.pharma-network.com/msp/signcerts/Admin@transporter.pharma-network.com-cert.pem",
     privateKeyPath:
-      "../network/crypto-config/peerOrganizations/transporter.pharma-network.com/users/Admin@transporter.pharma-network.com/msp/keystore/7522c60a9a4aa47a79e72437cc36863d0c5f9809bccc8a5a0d316cf85d63c9d1_sk",
+      "../network/crypto-config/peerOrganizations/transporter.pharma-network.com/users/Admin@transporter.pharma-network.com/msp/keystore/95768074871d63a1304929cca7c2e31aeb44162e36103d96e3adf60a3a4826f7_sk",
     walletPath: "./identities/transporter",
     identityLabel: "TRANSPORTER_ADMIN",
     identityMSP: "transporterMSP",
@@ -82,7 +82,7 @@ const walletList = [
     certificatePath:
       "../network/crypto-config/peerOrganizations/retailer.pharma-network.com/users/Admin@retailer.pharma-network.com/msp/signcerts/Admin@retailer.pharma-network.com-cert.pem",
     privateKeyPath:
-      "../network/crypto-config/peerOrganizations/retailer.pharma-network.com/users/Admin@retailer.pharma-network.com/msp/keystore/078bdc1a2d3b9ba321d3986a361876fa26e7437883906e7cc77eb9f2b1982560_sk",
+      "../network/crypto-config/peerOrganizations/retailer.pharma-network.com/users/Admin@retailer.pharma-network.com/msp/keystore/8e93ba4ff422a9561f982d2189e50977b860b5a7f6ba41ebba2485ca901fd849_sk",
     walletPath: "./identities/retailer",
     identityLabel: "RETAILER_ADMIN",
     identityMSP: "retailerMSP",
@@ -91,7 +91,7 @@ const walletList = [
     certificatePath:
       "../network/crypto-config/peerOrganizations/consumer.pharma-network.com/users/Admin@consumer.pharma-network.com/msp/signcerts/Admin@consumer.pharma-network.com-cert.pem",
     privateKeyPath:
-      "../network/crypto-config/peerOrganizations/consumer.pharma-network.com/users/Admin@consumer.pharma-network.com/msp/keystore/18097ec9c9c2d4f0ae6807edfaed94addee998d2732ce175da03ea59d9800e76_sk",
+      "../network/crypto-config/peerOrganizations/consumer.pharma-network.com/users/Admin@consumer.pharma-network.com/msp/keystore/19172380cf1092fa8b0dd271ea91af80e6ae4cd82f10b70a98e8eb528408e5de_sk",
     walletPath: "./identities/consumer",
     identityLabel: "CONSUMER_ADMIN",
     identityMSP: "consumerMSP",

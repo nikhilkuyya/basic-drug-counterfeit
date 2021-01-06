@@ -15,8 +15,7 @@ async function drugRegistration(
   serialNo,
   mfgDate,
   expDate,
-  companyCRN,
-  companyName
+  companyCRN
 ) {
   try {
     const registrationDrugContract = await getDrugRegistrationContractInstance(
@@ -31,8 +30,7 @@ async function drugRegistration(
       serialNo,
       mfgDate,
       expDate,
-      companyCRN,
-      companyName
+      companyCRN
     );
     console.log(".... Processing Drug Registration Transaction \n\n ");
     let newDrug = JSON.parse(drugBuffer.toString());

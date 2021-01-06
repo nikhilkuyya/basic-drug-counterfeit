@@ -96,7 +96,7 @@ app.post("/distributor/registration", (req, res) => {
     });
 });
 app.post("/retailer/registration", (req, res) => {
-  manufacturerRegister
+  reatilerRegistration
     .execute(
       req.body.companyCRN,
       req.body.companyName,
@@ -157,8 +157,7 @@ app.post("/drug/registration", (req, res) => {
       body.serialNo,
       body.mfgDate,
       body.expDate,
-      body.companyCRN,
-      body.companyName
+      body.companyCRN
     )
     .then((drug) => {
       console.log("New Drug Entity created");

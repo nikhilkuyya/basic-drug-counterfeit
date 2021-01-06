@@ -25,31 +25,18 @@ class DrugRegistrationContract extends Contract {
     console.log("Instantiated the Durg Registration Context");
   }
 
-  async registerDrug(
-    ctx,
-    drugName,
-    serialNo,
-    mfgDate,
-    expDate,
-    companyCRN,
-    companyName
-  ) {
-    validate("SSSSSS", [
-      drugName,
-      serialNo,
-      mfgDate,
-      expDate,
-      companyCRN,
-      companyName,
-    ]);
-    cons clientMSPID = ctx.stub.getMSPID();
-    if(clientMSPID !== "manufacturerMSP"){
+  async registerDrug(ctx, drugName, serialNo, mfgDate, expDate, companyCRN) {
+    validate("SSSSS", [drugName, serialNo, mfgDate, expDate, companyCRN]);
+    const clientMSPID = ctx.clientIdentity.getMSPID();
+    if (clientMSPID !== "manufacturerMSP") {
       throw new Error("not Authorized");
     }
-    const company = await ctx.companyList.getCompany(companyCRN, companyName);
-    if (company === null) {
+    const company = await ctx.companyList.getCompanyByCRN(companyCRN);
+    if (company.length !== 1) {
       throw new Error("company is not registered");
     }
+    const companyData = company[0];
+    console.log("company Data", companyData);
     const drug = await ctx.drugList.getDrug(drugName, serialNo);
     if (drug !== null) {
       throw new Error("Already Manufactured with same data");
@@ -59,7 +46,7 @@ class DrugRegistrationContract extends Contract {
       serialNo,
       mfgDate,
       expDate,
-      company.getCompanyID()
+      companyData.getCompanyID()
     );
     drugPayLoad.setDrugProductID(ctx.drugList.getDrugCompositeKey(drugPayLoad));
     await ctx.drugList.addDrug(drugPayLoad);
