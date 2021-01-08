@@ -1,6 +1,7 @@
 const { Context, Contract } = require("fabric-contract-api");
-const CompanyList = require("./lib/lists/company.list");
 const validate = require("aproba");
+const constants = require("./constants");
+const CompanyList = require("./lib/lists/company.list");
 const Company = require("./lib/models/company");
 /**
  * A Entity Registration Context provides easy way to access the entities
@@ -74,16 +75,16 @@ class EntityRegistrationContract extends Contract {
     let isValid = false;
     if (organizationRole) {
       switch (mspID) {
-        case "manufacturerMSP":
+        case constants.msp.manufacturer:
           isValid = organizationRole === "Manufacturer";
           break;
-        case "retailerMSP":
+        case constants.msp.retailer:
           isValid = organizationRole === "Retailer";
           break;
-        case "transporterMSP":
+        case constants.msp.transporter:
           isValid = organizationRole === "Transporter";
           break;
-        case "distributorMSP":
+        case constants.msp.distributor:
           isValid = organizationRole === "Distributor";
           break;
         default:

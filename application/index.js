@@ -14,6 +14,11 @@ const {
   drugRegistration,
   drugs,
 } = require("./registration");
+const {
+  distributorCreatePO,
+  fetchPO,
+  retailerCreatePO,
+} = require("./purchaseorder");
 
 // Define Express app settings
 app.use(cors());
@@ -219,6 +224,81 @@ app.get("/drugs", (req, res) => {
 });
 //#endregion
 
+// #region "Create PurchaseOrder"
+app.post("/distributor/po", (req, res) => {
+  distributorCreatePO
+    .execute(
+      req.body.buyerCRN,
+      req.body.sellerCRN,
+      req.body.drugName,
+      req.body.quantity
+    )
+    .then((po) => {
+      console.log("PurchaseOrder entity created");
+      const result = {
+        status: "success",
+        message: "PurchaseOrder entity created",
+        company: po,
+      };
+      res.json(result);
+    })
+    .catch((e) => {
+      const result = {
+        status: "error",
+        message: "Failed",
+        error: e,
+      };
+      res.status(500).send(result);
+    });
+});
+app.post("/retailer/po", (req, res) => {
+  retailerCreatePO
+    .execute(
+      req.body.buyerCRN,
+      req.body.sellerCRN,
+      req.body.drugName,
+      req.body.quantity
+    )
+    .then((po) => {
+      console.log("PurchaseOrder entity created");
+      const result = {
+        status: "success",
+        message: "PurchaseOrder entity created",
+        company: po,
+      };
+      res.json(result);
+    })
+    .catch((e) => {
+      const result = {
+        status: "error",
+        message: "Failed",
+        error: e,
+      };
+      res.status(500).send(result);
+    });
+});
+app.get("/po", (req, res) => {
+  fetchPO
+    .execute(req.body.buyerCRN, req.body.drugName)
+    .then((po) => {
+      console.log("PurchaseOrder fetched ");
+      const result = {
+        status: "success",
+        message: "PurchaseOrder fetched",
+        company: po,
+      };
+      res.json(result);
+    })
+    .catch((e) => {
+      const result = {
+        status: "error",
+        message: "Failed",
+        error: e,
+      };
+      res.status(500).send(result);
+    });
+});
+//#endregion
 app.listen(port, () =>
   console.log(`Distributed Durg Counterfeit App listening on port ${port}!`)
 );

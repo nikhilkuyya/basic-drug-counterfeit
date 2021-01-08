@@ -41,3 +41,7 @@ peer chaincode invoke -o orderer.pharma-network.com:7050 -C pharmachannel -n pha
 ---
 
 peer chaincode invoke -o orderer.pharma-network.com:7050 -C pharmachannel -n pharmanet -c '{"Args":["org.pharma-network.pharmanet.drugRegistrationContract:registerDrug","P1","1","06-12-2020","06-01-2021","0001","Hello1"]}'
+
+---
+
+peer chaincode invoke -o orderer.pharma-network.com:7050 -C pharmachannel -n pharmanet -c '{"Args":["org.pharma-network.pharmanet.purchaseOrderContract:createPurchaseOrder","DIST001","MAN001","Paracetamol",4]}'

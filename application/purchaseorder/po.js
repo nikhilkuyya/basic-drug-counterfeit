@@ -1,27 +1,28 @@
 const {
   disconnect,
-  getDrugRegistrationContractInstance,
+  getPurchaseOrderContractInstance,
 } = require("../contractHelper");
 
 const constants = require("../constants");
 
-async function fetchDrugs(drugName) {
+async function fetchPO(buyerCRN, drugName) {
   try {
-    const registrationDrugContract = await getDrugRegistrationContractInstance(
+    const purchaseOrderContract = await getPurchaseOrderContractInstance(
       constants.manufacturer.walletPath,
       constants.manufacturer.fabricUserName,
       constants.manufacturer.connectionProfilePath
     );
     console.log("... Registering the Drug");
-    const drugBuffer = await registrationDrugContract.submitTransaction(
-      constants.entitySC.getDrugs,
+    const purchaseOrderBuffer = await purchaseOrderContract.submitTransaction(
+      constants.entitySC.purchaseOrder.fetchPO,
+      buyerCRN,
       drugName
     );
     console.log(".... Processing Drug Registration Transaction \n\n ");
-    let drugs = JSON.parse(drugBuffer.toString());
-    console.log(drugs);
+    let purchaseOrder = JSON.parse(purchaseOrderBuffer.toString());
+    console.log(purchaseOrder);
     console.log("\n\n ...Register new Drug Complete! ");
-    return drugs;
+    return purchaseOrder;
   } catch (e) {
     console.log(`\n\n ${e} \n\n`);
     throw new Error(e);
@@ -31,4 +32,4 @@ async function fetchDrugs(drugName) {
   }
 }
 
-module.exports.execute = fetchDrugs;
+module.exports.execute = fetchPO;

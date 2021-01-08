@@ -5,32 +5,25 @@
  */
 
 const {
-  getRegistrationContractInstance,
+  getPurchaseOrderContractInstance,
   disconnect,
 } = require("../contractHelper");
 
-const { registerCompany } = require("./registration.service");
-
 const constants = require("../constants");
-
-async function registerRetailerCompany(
-  companyCRN,
-  companyName,
-  location,
-  organizationRole
-) {
+const createPO = require("./service");
+async function createPurchaseOrder(buyerCRN, sellerCRN, drugName, quantity) {
   try {
-    const registrationCompanyContract = await getRegistrationContractInstance(
+    const PurchaseOrderContract = await getPurchaseOrderContractInstance(
       constants.retailer.walletPath,
       constants.retailer.fabricUserName,
       constants.retailer.connectionProfilePath
     );
-    return await registerCompany(
-      registrationCompanyContract,
-      companyCRN,
-      companyName,
-      location,
-      organizationRole
+    return await createPO(
+      PurchaseOrderContract,
+      buyerCRN,
+      sellerCRN,
+      drugName,
+      quantity
     );
   } catch (error) {
     console.log(`\n\n ${error} \n\n`);
@@ -42,4 +35,4 @@ async function registerRetailerCompany(
   }
 }
 
-module.exports.execute = registerRetailerCompany;
+module.exports.execute = createPurchaseOrder;

@@ -5,8 +5,6 @@ const {
 
 const { registerCompany } = require("./registration.service");
 
-const manufacturerWalletPath = "./identities/manufacturer";
-
 const constants = require("../constants");
 
 async function drugRegistration(
