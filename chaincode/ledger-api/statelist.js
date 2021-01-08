@@ -36,16 +36,16 @@ class StateList {
         State.splitKey(partialKey)
       );
       const list = [];
-      while (true) {
+      let hasNext = true;
+      while (hasNext) {
         let val = await res.next();
-        if (!val || !val.value || !val.value.key) {
-          break;
-        }
-        let compositKey = val.value.key;
-        const state = await this.getStateByCompositeKey(compositKey);
-        list.push(state);
-        if (val.done) {
-          break;
+        if (val && val.value && val.value.key) {
+          let compositKey = val.value.key;
+          const state = await this.getStateByCompositeKey(compositKey);
+          list.push(state);
+          hasNext = !val.done;
+        } else {
+          hasNext = false;
         }
       }
       await res.close();

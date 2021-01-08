@@ -61,4 +61,8 @@ module.exports.getDrugRegistrationContractInstance = getContractInstance.bind(
   null,
   "org.pharma-network.pharmanet.drugRegistrationContract"
 );
+module.exports.getPurchaseOrderContractInstance = getContractInstance.bind(
+  null,
+  "org.pharma-network.pharmanet.purchaseOrderContract"
+);
 module.exports.disconnect = disconnect;

@@ -26,6 +26,10 @@ module.exports = {
     connectionProfilePath: "./connection-profiles/consumer.yaml",
   },
   entitySC: {
+    purchaseOrder: {
+      createPO: "createPurchaseOrder",
+      fetchPO: "getPurchaseOrder",
+    },
     registerCompany: "registerCompany",
     getCompany: "getCompany",
     registerDrug: "registerDrug",

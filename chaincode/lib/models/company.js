@@ -33,6 +33,17 @@ class Company extends State {
     });
   }
 
+  static compareHiearchy(companyAHiearchy, companyBHiearchy) {
+    if (
+      Object.values(HIERARCHYKEY).includes(companyAHiearchy) &&
+      Object.values(HIERARCHYKEY).includes(companyBHiearchy)
+    ) {
+      return companyAHiearchy - companyBHiearchy;
+    } else {
+      return -1;
+    }
+  }
+
   setHiearchy() {
     const organizationRole = this.organizationRole;
     let hierarchyKey;
@@ -59,6 +70,10 @@ class Company extends State {
 
   getCompanyID() {
     return this.companyID;
+  }
+
+  getHiearchy() {
+    return this.hierarchyKey;
   }
 
   toBuffer() {
