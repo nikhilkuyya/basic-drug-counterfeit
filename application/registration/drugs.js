@@ -3,8 +3,6 @@ const {
   getDrugRegistrationContractInstance,
 } = require("../contractHelper");
 
-const manufacturerWalletPath = "./identities/manufacturer";
-
 const constants = require("../constants");
 
 async function fetchDrugs(drugName) {

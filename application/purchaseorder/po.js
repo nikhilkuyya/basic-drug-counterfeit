@@ -3,8 +3,6 @@ const {
   getPurchaseOrderContractInstance,
 } = require("../contractHelper");
 
-const manufacturerWalletPath = "./identities/manufacturer";
-
 const constants = require("../constants");
 
 async function fetchPO(buyerCRN, drugName) {

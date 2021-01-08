@@ -11,8 +11,6 @@ const {
 
 const { registerCompany } = require("./registration.service");
 
-const manufacturerWalletPath = "./identities/reatiler";
-
 const constants = require("../constants");
 
 async function registerRetailerCompany(
