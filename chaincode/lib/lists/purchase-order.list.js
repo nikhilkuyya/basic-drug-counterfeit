@@ -13,11 +13,11 @@ class PurchaseOrderList extends StateList {
 
   async getPurchaseOrder(buyerCRN, drugName) {
     const purchaseOrderKey = PurchaseOrder.makeKey([buyerCRN, drugName]);
-    return this.getState(purchaseOrderKey);
+    return await this.getState(purchaseOrderKey);
   }
 
   async createPurchaseOrder(purchaseOrder) {
-    this.addState(purchaseOrder);
+    await this.addState(purchaseOrder);
   }
 }
 module.exports = PurchaseOrderList;

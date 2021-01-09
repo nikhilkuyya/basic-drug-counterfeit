@@ -30,6 +30,10 @@ class Drug extends State {
     });
   }
 
+  getDrugProductID() {
+    return this.productID;
+  }
+
   setDrugProductID(productID) {
     Object.assign(this, { productID });
   }

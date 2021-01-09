@@ -15,18 +15,21 @@ class CompanyList extends StateList {
     const partialKey = Company.makeKey([companyCRN]);
     console.log(partialKey);
 
-    const list = this.getStateByPartialCompositeKey(partialKey);
-
-    return list;
+    const companyList = await this.getStateByPartialCompositeKey(partialKey);
+    if (companyList && Array.isArray(companyList) && companyList.length === 1) {
+      return companyList[0];
+    } else {
+      return null;
+    }
   }
 
   async getCompany(companyCRN, companyName) {
     const companyKey = Company.makeKey([companyCRN, companyName]);
-    return this.getState(companyKey);
+    return await this.getState(companyKey);
   }
 
   async addCompany(company) {
-    this.addState(company);
+    await this.addState(company);
   }
 }
 

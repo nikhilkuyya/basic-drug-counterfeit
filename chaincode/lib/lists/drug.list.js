@@ -7,9 +7,9 @@ class DrugList extends StateList {
     this.use(Drug);
   }
 
-  getDrugsByName(drugName) {
+  async getDrugsByName(drugName) {
     const partialKey = Drug.makeKey([drugName]);
-    return this.getStateByPartialCompositeKey(partialKey);
+    return await this.getStateByPartialCompositeKey(partialKey);
   }
 
   getDrugCompositeKey(drug) {
@@ -18,11 +18,15 @@ class DrugList extends StateList {
 
   async getDrug(drugName, serialNo) {
     const drugKey = Drug.makeKey([drugName, serialNo]);
-    return this.getState(drugKey);
+    return await this.getState(drugKey);
   }
 
   async addDrug(drug) {
-    this.addState(drug);
+    await this.addState(drug);
+  }
+
+  async updateDrug(drug) {
+    await this.updateState(drug);
   }
 }
 

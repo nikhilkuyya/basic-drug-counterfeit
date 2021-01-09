@@ -31,11 +31,10 @@ class DrugRegistrationContract extends Contract {
     if (clientMSPID !== "manufacturerMSP") {
       throw new Error("not Authorized");
     }
-    const company = await ctx.companyList.getCompanyByCRN(companyCRN);
-    if (company.length !== 1) {
+    const companyData = await ctx.companyList.getCompanyByCRN(companyCRN);
+    if (companyData === null) {
       throw new Error("company is not registered");
     }
-    const companyData = company[0];
     console.log("company Data", companyData);
     const drug = await ctx.drugList.getDrug(drugName, serialNo);
     if (drug !== null) {

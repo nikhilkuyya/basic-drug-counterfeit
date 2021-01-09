@@ -41,20 +41,12 @@ class PurchaseOrderContract extends Contract {
     ) {
       throw new Error("Not Authorized organization");
     }
-    const buyerCompanyDataByCRN = await ctx.companyList.getCompanyByCRN(
-      buyerCRN
-    );
-    const sellerCompanyDataByCRN = await ctx.companyList.getCompanyByCRN(
-      sellerCRN
-    );
-    if (
-      buyerCompanyDataByCRN.length !== 1 &&
-      sellerCompanyDataByCRN.length !== 1
-    ) {
+    const buyerCompany = await ctx.companyList.getCompanyByCRN(buyerCRN);
+    const sellerCompany = await ctx.companyList.getCompanyByCRN(sellerCRN);
+    if (!buyerCompany || !sellerCompany) {
       throw new Error("Invalid Company CRN Data");
     }
-    const buyerCompany = buyerCompanyDataByCRN[0];
-    const sellerCompany = sellerCompanyDataByCRN[0];
+
     if (
       Company.compareHiearchy(
         buyerCompany.getHiearchy(),
