@@ -30,6 +30,10 @@ module.exports = {
       createPO: "createPurchaseOrder",
       fetchPO: "getPurchaseOrder",
     },
+    shipment: {
+      createShipment: "createShipment",
+      updateShipment: "updateShipment",
+    },
     registerCompany: "registerCompany",
     getCompany: "getCompany",
     registerDrug: "registerDrug",
