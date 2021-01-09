@@ -21,7 +21,7 @@ class ShipmentList extends StateList {
   }
 
   async updateShipment(shipment) {
-    await this.updateShipment(shipment);
+    await this.updateState(shipment);
   }
 }
 

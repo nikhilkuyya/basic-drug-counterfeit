@@ -32,7 +32,8 @@ class PurchaseOrderContract extends Contract {
 
   async createPurchaseOrder(ctx, buyerCRN, sellerCRN, drugName, quantity) {
     validate("SSSS", [buyerCRN, sellerCRN, drugName, quantity]);
-    if (Number.isNaN(+quantity)) {
+    quantity = +quantity;
+    if (Number.isNaN(quantity)) {
       throw new Error("invalid qunatity inputs");
     }
     const mspID = ctx.clientIdentity.getMSPID();

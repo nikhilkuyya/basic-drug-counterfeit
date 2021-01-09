@@ -6,6 +6,10 @@ class Shipment extends State {
     Object.assign(this, obj);
   }
 
+  getAssets() {
+    return this.assets.map((d) => d);
+  }
+
   setShipmentID(shipmentID) {
     Object.assign(this, { shipmentID: shipmentID });
   }
@@ -20,6 +24,14 @@ class Shipment extends State {
 
   setDeliveredStatus() {
     Object.assign(this, { status: "delivered" });
+  }
+
+  getTransporter() {
+    return this.transporter;
+  }
+
+  getInitiator() {
+    return this.creater;
   }
 
   static getClass() {

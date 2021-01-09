@@ -12,12 +12,7 @@ const {
 const { update } = require("./service");
 const constants = require("../constants");
 
-async function updateShipment(
-  buryerCRN,
-  drugName,
-  listOfAssets,
-  transporterCRN
-) {
+async function updateShipment(buryerCRN, drugName, transporterCRN) {
   try {
     const updateShipmentContract = await getUpdateShipmentContractInstance(
       constants.transporter.walletPath,
