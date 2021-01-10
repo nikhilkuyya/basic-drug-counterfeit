@@ -3,3 +3,7 @@
 !/network/channel-artifacts/.gitkeep
 **/node_modules
 **/identities
+docs/postman-screenshots
+docs/setup-results
+**/**.png
+**/**.pdf
