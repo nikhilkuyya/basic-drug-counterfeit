@@ -18,12 +18,14 @@ const {
   distributorCreatePO,
   fetchPO,
   retailerCreatePO,
+  retailerSale,
 } = require("./purchaseorder");
 const {
   distributorCreateShipment,
   manufacturerCreateShipment,
   transporterUpdateShipment,
 } = require("./shipment");
+const { viewDrugHistory, viewDrugState } = require("./view-state");
 
 // Define Express app settings
 app.use(cors());
@@ -53,6 +55,7 @@ app.post("/addToWallet", (req, res) => {
       res.status(500).send(result);
     });
 });
+
 //#region  "Initiation"
 app.post("/manufacturer/registration", (req, res) => {
   manufacturerRegister
@@ -303,6 +306,32 @@ app.get("/po", (req, res) => {
       res.status(500).send(result);
     });
 });
+app.post("/retailer/sale", (req, res) => {
+  retailerSale
+    .execute(
+      req.body.drugName,
+      req.body.serialNo,
+      req.body.retailerCRN,
+      req.body.customerAadhar
+    )
+    .then((sale) => {
+      console.log("Retail Sale created");
+      const result = {
+        status: "success",
+        message: "Retail Sale created",
+        company: sale,
+      };
+      res.json(result);
+    })
+    .catch((e) => {
+      const result = {
+        status: "error",
+        message: "Failed",
+        error: e,
+      };
+      res.status(500).send(result);
+    });
+});
 //#endregion
 
 //#region "Shipment"
@@ -375,6 +404,49 @@ app.post("/transporter/shipment", (req, res) => {
     .catch((e) => {
       const result = {
         status: "error",
+        message: "Failed",
+        error: e,
+      };
+      res.status(500).send(result);
+    });
+});
+//#endregion
+
+//#region History
+app.get("/drug", (req, res) => {
+  viewDrugState
+    .execute(req.body.drugName, req.body.serialNo)
+    .then((currentDrug) => {
+      const result = {
+        status: "success",
+        message: "Drugs",
+        drugs: currentDrug,
+      };
+      res.json(result);
+    })
+    .catch((e) => {
+      const result = {
+        statue: "error",
+        message: "Failed",
+        error: e,
+      };
+      res.status(500).send(result);
+    });
+});
+app.get("/drug/history", (req, res) => {
+  viewDrugHistory
+    .execute(req.body.drugName, req.body.serialNo)
+    .then((drugTransactions) => {
+      const result = {
+        status: "success",
+        message: "Drugs",
+        drugs: drugTransactions,
+      };
+      res.json(result);
+    })
+    .catch((e) => {
+      const result = {
+        statue: "error",
         message: "Failed",
         error: e,
       };

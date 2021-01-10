@@ -66,6 +66,49 @@ class StateList {
     await this.ctx.stub.putState(key, data);
   }
 
+  async getHistory(key) {
+    let ledgerCompositeKey = this.ctx.stub.createCompositeKey(
+      this.name,
+      State.splitKey(key)
+    );
+    const stateHistories = await this.ctx.stub.getHistoryForKey(
+      ledgerCompositeKey
+    );
+    const list = [];
+    let hasNext = true;
+    while (hasNext) {
+      let val = await stateHistories.next();
+      if (val && val.value && val.value.getValue()) {
+        const currentData = val.value;
+        const timeStamp = currentData.getTimestamp();
+        const txId = currentData.getTxId();
+        let newItem;
+        try {
+          newItem = {
+            state: this._convertBufferToObject(currentData.getValue()),
+            timeStamp: timeStamp,
+            tx_id: txId,
+          };
+        } catch (e) {
+          console.log("history value", currentData.getValue());
+          console.log("error", e);
+        } finally {
+          newItem = {
+            state: null,
+            timeStamp: timeStamp,
+            tx_id: txId,
+          };
+        }
+        list.push(newItem);
+        hasNext = !val.done;
+      } else {
+        hasNext = false;
+      }
+    }
+    await stateHistories.close();
+    return list;
+  }
+
   /**
    * Get a state from the list using supplied keys. Form composite
    * keys to retrieve state from world state. State data is deserialized
@@ -82,7 +125,11 @@ class StateList {
 
   async getStateByCompositeKey(ledgerCompositeKey) {
     let data = await this.ctx.stub.getState(ledgerCompositeKey);
-    console.log("Buffer :", data.toString().length);
+    return this._convertBufferToObject(data);
+  }
+
+  _convertBufferToObject(data) {
+    console.log("Buffer :", data, data.toString().length);
     if (data && data.toString().length !== 0) {
       let state = State.deserialize(data, this.supportedClasses);
       console.log("state : ", state);

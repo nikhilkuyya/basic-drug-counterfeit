@@ -4,7 +4,7 @@
 
 Item Level SKUs' Traceable system with tamper proof solution
 
-## How tamper proof solution 
+## How tamper proof solution
 
 - We are building the Item level SKU identifier barcode.
 - Each SKU's is traceable as we store transaction history.
@@ -12,17 +12,17 @@ Item Level SKUs' Traceable system with tamper proof solution
 
 ## Why Blockchain
 
-- ### Distributed
+### Distributed
 
-  - stackholders nature are competitor to each other and central database can make vunerable and significant impact for the end user as well as business process.
+- stackholders nature are competitor to each other and central database can make vunerable and significant impact for the end user as well as business process.
 
-- ### Hashing
+### Hashing
 
-  - Privacy of data is importance to themself.
+- Privacy of data is importance to themself.
 
-- ### Tamper Evidence
+### Tamper Evidence
 
-  - Data cannot be tampered, once it has been kept without noticed.
+- Data cannot be tampered, once it has been kept without noticed.
 
 ### Why HyperLedger Fabric
 
@@ -32,4 +32,4 @@ Item Level SKUs' Traceable system with tamper proof solution
 - As core logic is handled by hyperledger fabric.
 - Interact with logic with available by building application using REST services and interfaces.
 
-***SKU*** - Stock keeping unit
+**_SKU_** - Stock keeping unit

@@ -25,6 +25,11 @@ class DrugList extends StateList {
     return await this.getState(drugKey);
   }
 
+  async getDrugHistory(drugName, serialNo) {
+    const drugKey = Drug.makeKey([drugName, serialNo]);
+    return await this.getHistory(drugKey);
+  }
+
   async addDrug(drug) {
     await this.addState(drug);
   }

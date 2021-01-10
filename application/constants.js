@@ -29,6 +29,7 @@ module.exports = {
     purchaseOrder: {
       createPO: "createPurchaseOrder",
       fetchPO: "getPurchaseOrder",
+      retailDrug: "retailDrug",
     },
     shipment: {
       createShipment: "createShipment",
@@ -38,5 +39,7 @@ module.exports = {
     getCompany: "getCompany",
     registerDrug: "registerDrug",
     getDrugs: "getDrugs",
+    getDrug: "getDrug",
+    viewDrugHistory: "viewDrugHistory",
   },
 };

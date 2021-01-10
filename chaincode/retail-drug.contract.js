@@ -55,6 +55,7 @@ class RetailDrugContract extends Contract {
     newDrugState.updateOwner(customerAadhar);
     console.log("update Drug State", newDrugState);
     await ctx.drugList.updateDrug(newDrugState);
+    return newDrugState;
   }
 }
 
