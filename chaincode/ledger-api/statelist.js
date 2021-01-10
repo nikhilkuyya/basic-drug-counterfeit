@@ -85,7 +85,9 @@ class StateList {
         let newItem;
         try {
           newItem = {
-            state: this._convertBufferToObject(currentData.getValue()),
+            state: this._convertBufferToObject(
+              Buffer.from(currentData.getValue())
+            ),
             timeStamp: timeStamp,
             tx_id: txId,
           };
