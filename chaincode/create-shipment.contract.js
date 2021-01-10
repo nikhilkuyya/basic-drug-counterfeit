@@ -126,11 +126,13 @@ class CreateShipmentContract extends Contract {
       //#endregion
 
       //#region Shipment Creation
-
+      const shipmentAssets = requstedDrugsStateList.map((drug) =>
+        drug.getDrugProductID()
+      );
       const shipment = Shipment.createInstance(
         buyerCRN,
         drugName,
-        listOfAssets,
+        shipmentAssets,
         purchaseOrder.seller,
         transporterCompany.getCompanyID()
       );

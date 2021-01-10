@@ -48,23 +48,25 @@ class UpdateShipmentContract extends Contract {
       }
 
       const assetsList = shipmentDetails.getAssets();
-      console.log("assets", assetsList);
+      console.log("assets", assetsList, assetsList[0].length);
 
       const drugEntities = [];
       for (let it = 0; it < assetsList.length; it++) {
         const drugCompositeKey = assetsList[it];
-        const splitCompKey = ctx.stub.splitCompositeKey(drugCompositeKey);
-        console.log(
-          "composite Key",
-          splitCompKey,
-          splitCompKey.objectType,
-          splitCompKey.attributes
+        // const splitCompKey = ctx.stub.splitCompositeKey(drugCompositeKey);
+        // console.log(
+        //   "composite Key",
+        //   splitCompKey,
+        //   splitCompKey.objectType,
+        //   splitCompKey.attributes
+        // );
+        // const ledgerKey = ctx.stub.createCompositeKey(
+        //   splitCompKey.objectType,
+        //   splitCompKey.attributes
+        // );
+        const drugState = await ctx.drugList.getDrugByCompositeKey(
+          drugCompositeKey
         );
-        const ledgerKey = ctx.stub.createCompositeKey(
-          splitCompKey.objectType,
-          splitCompKey.attributes
-        );
-        const drugState = await ctx.drugList.getDrugByCompositeKey(ledgerKey);
         console.log("drug", drugState);
         if (drugState.getOwner() === transporterDetails.getCompanyID()) {
           const newDrugState = Drug.createInstance(
@@ -102,12 +104,13 @@ class UpdateShipmentContract extends Contract {
         buyerCRN,
         drugName,
         shipmentDetails.getAssets(),
-        shipmentDetails.getIntiator(),
+        shipmentDetails.getInitiator(),
         shipmentDetails.getTransporter()
       );
       updateShipment.setShipmentID(shipmentDetails.getShipmentID());
       updateShipment.setDeliveredStatus();
       await ctx.shipmentList.updateShipment(updateShipment);
+      return updateShipment;
       //#endregion
     } catch (e) {
       throw new Error(e);
