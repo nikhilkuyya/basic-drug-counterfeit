@@ -181,7 +181,34 @@
 						"exec": [
 							"pm.test(\"Status Test\",function(){",
 							"    pm.response.to.have.status(200);",
-							"})"
+							"})",
+							"",
+							"var template = `",
+							"    <table bgcolor=\"#FFFFFF\">",
+							"        <tr>",
+							"            <th>Name</th>",
+							"            <th>SerialNo</th>",
+							"            <th>Owner</th>",
+							"            <th>ProductID</th>",
+							"            <th>Shipment</th>",
+							"        </tr>",
+							"",
+							"        {{#each response}}",
+							"            <tr>",
+							"                <td>{{name}}</td>",
+							"                <td>{{serialNo}}</td>",
+							"                <td>{{owner}}</td>",
+							"                <td>{{productID}}</td>",
+							"                <td>{{shipment}}</td>",
+							"            </tr>",
+							"        {{/each}}",
+							"    </table>",
+							"`;",
+							"// Set visualizer",
+							"pm.visualizer.set(template, {",
+							"    // Pass the response body parsed as JSON as `data`",
+							"    response: pm.response.json().drugs",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -279,7 +306,34 @@
 						"exec": [
 							"pm.test(\"Status Test\",function(){",
 							"    pm.response.to.have.status(200);",
-							"})"
+							"})",
+							"",
+							"var template = `",
+							"    <table bgcolor=\"#FFFFFF\">",
+							"        <tr>",
+							"            <th>Name</th>",
+							"            <th>SerialNo</th>",
+							"            <th>Owner</th>",
+							"            <th>ProductID</th>",
+							"            <th>Shipment</th>",
+							"        </tr>",
+							"",
+							"        {{#each response}}",
+							"            <tr>",
+							"                <td>{{name}}</td>",
+							"                <td>{{serialNo}}</td>",
+							"                <td>{{owner}}</td>",
+							"                <td>{{productID}}</td>",
+							"                <td>{{shipment}}</td>",
+							"            </tr>",
+							"        {{/each}}",
+							"    </table>",
+							"`;",
+							"// Set visualizer",
+							"pm.visualizer.set(template, {",
+							"    // Pass the response body parsed as JSON as `data`",
+							"    response: pm.response.json().drugs",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -490,7 +544,34 @@
 						"exec": [
 							"pm.test(\"Status Test\",function(){",
 							"    pm.response.to.have.status(200);",
-							"})"
+							"})",
+							"",
+							"var template = `",
+							"    <table bgcolor=\"#FFFFFF\">",
+							"        <tr>",
+							"            <th>Name</th>",
+							"            <th>SerialNo</th>",
+							"            <th>Owner</th>",
+							"            <th>ProductID</th>",
+							"            <th>Shipment</th>",
+							"        </tr>",
+							"",
+							"        {{#each response}}",
+							"            <tr>",
+							"                <td>{{name}}</td>",
+							"                <td>{{serialNo}}</td>",
+							"                <td>{{owner}}</td>",
+							"                <td>{{productID}}</td>",
+							"                <td>{{shipment}}</td>",
+							"            </tr>",
+							"        {{/each}}",
+							"    </table>",
+							"`;",
+							"// Set visualizer",
+							"pm.visualizer.set(template, {",
+							"    // Pass the response body parsed as JSON as `data`",
+							"    response: pm.response.json().drugs",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -588,7 +669,34 @@
 						"exec": [
 							"pm.test(\"Status Test\",function(){",
 							"    pm.response.to.have.status(200);",
-							"})"
+							"})",
+							"",
+							"var template = `",
+							"    <table bgcolor=\"#FFFFFF\">",
+							"        <tr>",
+							"            <th>Name</th>",
+							"            <th>SerialNo</th>",
+							"            <th>Owner</th>",
+							"            <th>ProductID</th>",
+							"            <th>Shipment</th>",
+							"        </tr>",
+							"",
+							"        {{#each response}}",
+							"            <tr>",
+							"                <td>{{name}}</td>",
+							"                <td>{{serialNo}}</td>",
+							"                <td>{{owner}}</td>",
+							"                <td>{{productID}}</td>",
+							"                <td>{{shipment}}</td>",
+							"            </tr>",
+							"        {{/each}}",
+							"    </table>",
+							"`;",
+							"// Set visualizer",
+							"pm.visualizer.set(template, {",
+							"    // Pass the response body parsed as JSON as `data`",
+							"    response: pm.response.json().drugs",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -626,6 +734,19 @@
 		},
 		{
 			"name": "3_RetailDrug-1_Paracetamol",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status Test\",function(){",
+							"    pm.response.to.have.status(200);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -678,7 +799,34 @@
 						"exec": [
 							"pm.test(\"Status Test\",function(){",
 							"    pm.response.to.have.status(200);",
-							"})"
+							"})",
+							"",
+							"var template = `",
+							"    <table bgcolor=\"#FFFFFF\">",
+							"        <tr>",
+							"            <th>Name</th>",
+							"            <th>SerialNo</th>",
+							"            <th>Owner</th>",
+							"            <th>ProductID</th>",
+							"            <th>Shipment</th>",
+							"        </tr>",
+							"",
+							"        {{#each response}}",
+							"            <tr>",
+							"                <td>{{name}}</td>",
+							"                <td>{{serialNo}}</td>",
+							"                <td>{{owner}}</td>",
+							"                <td>{{productID}}</td>",
+							"                <td>{{shipment}}</td>",
+							"            </tr>",
+							"        {{/each}}",
+							"    </table>",
+							"`;",
+							"// Set visualizer",
+							"pm.visualizer.set(template, {",
+							"    // Pass the response body parsed as JSON as `data`",
+							"    response: pm.response.json().drugs",
+							"});"
 						],
 						"type": "text/javascript"
 					}

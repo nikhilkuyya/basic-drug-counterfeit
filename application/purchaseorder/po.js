@@ -20,7 +20,6 @@ async function fetchPO(buyerCRN, drugName) {
     );
     console.log(".... Processing Drug Registration Transaction \n\n ");
     let purchaseOrder = JSON.parse(purchaseOrderBuffer.toString());
-    console.log(purchaseOrder);
     console.log("\n\n ...Register new Drug Complete! ");
     return purchaseOrder;
   } catch (e) {

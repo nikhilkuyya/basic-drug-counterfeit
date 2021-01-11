@@ -210,7 +210,6 @@ app.get("/company", (req, res) => {
     });
 });
 app.get("/drugs", (req, res) => {
-  console.log(req.body.drugName);
   drugs
     .execute(req.body.drugName)
     .then((drugs) => {

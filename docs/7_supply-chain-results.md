@@ -28,4 +28,6 @@
 
 ![View Drug Current State](docs/postman-screenshots/3_CurrentState.png)
 
-![View Drug History](docs/postman-screenshots/)
+![View Drug History](docs/postman-screenshots/3_ViewHistory_Drug.png)
+
+![View Drug History Visual](docs/postman-screenshots/3_DrugHistory_Visual.png)

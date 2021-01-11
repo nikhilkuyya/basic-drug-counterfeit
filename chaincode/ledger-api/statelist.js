@@ -66,49 +66,80 @@ class StateList {
     await this.ctx.stub.putState(key, data);
   }
 
+  async getHisotryResults(iterator) {
+    const allResults = [];
+    while (true) {
+      const res = await iterator.next();
+      if (res.value) {
+        const currentData = res.value;
+        const timeStamp = currentData.getTimestamp();
+        const txId = currentData.getTxId();
+
+        allResults.push({
+          state: JSON.parse(
+            currentData.value.toString("utf8").split("\u0000").join("")
+          ),
+          timeStamp,
+          txId,
+        });
+      }
+
+      // check to see if we have reached then end
+      if (res.done) {
+        // explicitly close the iterator
+        await iterator.close();
+        return allResults;
+      }
+    }
+  }
+
   async getHistory(key) {
     let ledgerCompositeKey = this.ctx.stub.createCompositeKey(
       this.name,
       State.splitKey(key)
     );
-    const stateHistories = await this.ctx.stub.getHistoryForKey(
+    const stateHistoriesIterator = await this.ctx.stub.getHistoryForKey(
       ledgerCompositeKey
     );
-    const list = [];
-    let hasNext = true;
-    while (hasNext) {
-      let val = await stateHistories.next();
-      if (val && val.value && val.value.getValue()) {
-        const currentData = val.value;
-        const timeStamp = currentData.getTimestamp();
-        const txId = currentData.getTxId();
-        let newItem;
-        try {
-          newItem = {
-            state: this._convertBufferToObject(
-              Buffer.from(currentData.getValue())
-            ),
-            timeStamp: timeStamp,
-            tx_id: txId,
-          };
-        } catch (e) {
-          console.log("history value", currentData.getValue());
-          console.log("error", e);
-        } finally {
-          newItem = {
-            state: null,
-            timeStamp: timeStamp,
-            tx_id: txId,
-          };
-        }
-        list.push(newItem);
-        hasNext = !val.done;
-      } else {
-        hasNext = false;
-      }
+    try {
+      return await this.getHisotryResults(stateHistoriesIterator);
+    } catch (e) {
+      throw new Error(e);
     }
-    await stateHistories.close();
-    return list;
+    // const list = [];
+    // let hasNext = true;
+    // while (hasNext) {
+    //   let val = await stateHistoriesIterator.next();
+    //   if (val && val.value && val.value.getValue()) {
+    //     const currentData = val.value;
+    //     const timeStamp = currentData.getTimestamp();
+    //     const txId = currentData.getTxId();
+    //     let newItem;
+    //     try {
+    //       newItem = {
+    //         state: this._convertBufferToObject(await currentData.getValue()),
+    //         timeStamp: timeStamp,
+    //         tx_id: txId,
+    //       };
+    //     } catch (e) {
+    //       console.log("history value", currentData.getValue());
+    //       console.log("history value", await currentData.getValue());
+    //       console.log("error", e);
+    //     } finally {
+    //       newItem = {
+    //         state: null,
+    //         timeStamp: timeStamp,
+    //         tx_id: txId,
+    //       };
+    //     }
+    //     list.push(newItem);
+    //     hasNext = !val.done;
+    //   } else {
+    //     hasNext = false;
+    //   }
+    // }
+    // await stateHistoriesIterator.close();
+    // return list;
   }
 
   /**
