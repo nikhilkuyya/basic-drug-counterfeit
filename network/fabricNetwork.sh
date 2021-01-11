@@ -185,8 +185,7 @@ function networkDown() {
     docker volume prune
     docker network prune
     # remove orderer block and other channel configuration transactions and certs
-    #TODO: Need to uncomment below .
-    # sudo rm -rf channel-artifacts/*.block channel-artifacts/*.tx crypto-config
+    sudo rm -rf channel-artifacts/*.block channel-artifacts/*.tx crypto-config
   fi
 }
 

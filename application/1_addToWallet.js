@@ -50,6 +50,7 @@ async function main(
   }
 }
 
+//TODO: Need to replace the privateKeyPath Value at the end secretKey.
 const walletList = [
   {
     certificatePath:
