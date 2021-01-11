@@ -31,3 +31,11 @@
 ![View Drug History](docs/postman-screenshots/3_ViewHistory_Drug.png)
 
 ![View Drug History Visual](docs/postman-screenshots/3_DrugHistory_Visual.png)
+
+![Initiation Summary](docs/postman-screenshots/1_Initiation-Summary.png)
+
+![SupplyChain Summary](docs/postman-screenshots/2_SupplyChain-Summary.png)
+
+![ViewLifeCycle Summary](docs/postman-screenshots/3_ViewLife_Summary.png)
+
+![Chaincode Success Logs](docs/postman-screenshots/3_Chaincode_logs.png)

@@ -8,4 +8,4 @@ We will see one of the use of pharameticual industries using hyperledger fabric 
 
 ## Generate Instruction Docs
 
-pandoc docs/4_playground-network.md docs/5_setup-results.md docs/6_initiation-results.md docs/7_supply-chain-results.md -s -o test.pdf
+pandoc docs/4_playground-network.md docs/6_endpoints-describe.md docs/5_setup-results.md docs/7_initiation-results.md docs/8_supply-chain-results.md -s -o ../instructions.pdf
