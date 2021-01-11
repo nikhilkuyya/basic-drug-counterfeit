@@ -67,6 +67,7 @@ class StateList {
 
   async getHisotryResults(iterator) {
     const allResults = [];
+    /*eslint no-constant-condition: 0 */
     while (true) {
       const res = await iterator.next();
       if (res.value) {
