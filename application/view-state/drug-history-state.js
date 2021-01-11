@@ -5,22 +5,23 @@ const {
 
 const constants = require("../constants");
 
-async function fetchDrugs(drugName) {
+async function fetchDrugHistory(drugName, serialNo) {
   try {
     const registrationDrugContract = await getDrugRegistrationContractInstance(
       constants.manufacturer.walletPath,
       constants.manufacturer.fabricUserName,
       constants.manufacturer.connectionProfilePath
     );
-    console.log("... Registering the Drug");
-    const drugBuffer = await registrationDrugContract.submitTransaction(
-      constants.entitySC.getDrugs,
-      drugName
+    console.log("... Fetching Drug History...");
+    const drugHistoryBuffer = await registrationDrugContract.submitTransaction(
+      constants.entitySC.viewDrugHistory,
+      drugName,
+      serialNo
     );
-    console.log(".... Processing Drug Registration Transaction \n\n ");
-    let drugs = JSON.parse(drugBuffer.toString());
-    console.log("\n\n ...Register new Drug Complete! ");
-    return drugs;
+    console.log(".... Processing Drug Transactions \n\n ");
+    let drugHistories = JSON.parse(drugHistoryBuffer.toString());
+    console.log("\n\n ... Fetching Drug State History! ");
+    return drugHistories;
   } catch (e) {
     console.log(`\n\n ${e} \n\n`);
     throw new Error(e);
@@ -30,4 +31,4 @@ async function fetchDrugs(drugName) {
   }
 }
 
-module.exports.execute = fetchDrugs;
+module.exports.execute = fetchDrugHistory;

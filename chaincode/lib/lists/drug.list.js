@@ -7,22 +7,35 @@ class DrugList extends StateList {
     this.use(Drug);
   }
 
-  getDrugsByName(drugName) {
-    const partialKey = Drug.makeKey([drugName]);
-    return this.getStateByPartialCompositeKey(partialKey);
-  }
-
   getDrugCompositeKey(drug) {
     return this.getCompositeKey(drug);
   }
 
+  async getDrugByCompositeKey(compositeKey) {
+    return await this.getStateByCompositeKey(compositeKey);
+  }
+
+  async getDrugsByName(drugName) {
+    const partialKey = Drug.makeKey([drugName]);
+    return await this.getStateByPartialCompositeKey(partialKey);
+  }
+
   async getDrug(drugName, serialNo) {
     const drugKey = Drug.makeKey([drugName, serialNo]);
-    return this.getState(drugKey);
+    return await this.getState(drugKey);
+  }
+
+  async getDrugHistory(drugName, serialNo) {
+    const drugKey = Drug.makeKey([drugName, serialNo]);
+    return await this.getHistory(drugKey);
   }
 
   async addDrug(drug) {
-    this.addState(drug);
+    await this.addState(drug);
+  }
+
+  async updateDrug(drug) {
+    await this.updateState(drug);
   }
 }
 

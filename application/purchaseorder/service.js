@@ -16,7 +16,6 @@ async function createPO(
   );
   console.log(".... Processing Create Purchase Order \n\n ");
   let po = JSON.parse(poBuffer.toString());
-  console.log(po);
   console.log("\n\n ...Register new Purchase Order Complete! ");
   return po;
 }

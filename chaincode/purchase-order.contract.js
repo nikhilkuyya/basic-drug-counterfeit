@@ -32,7 +32,8 @@ class PurchaseOrderContract extends Contract {
 
   async createPurchaseOrder(ctx, buyerCRN, sellerCRN, drugName, quantity) {
     validate("SSSS", [buyerCRN, sellerCRN, drugName, quantity]);
-    if (Number.isNaN(+quantity)) {
+    quantity = +quantity;
+    if (Number.isNaN(quantity)) {
       throw new Error("invalid qunatity inputs");
     }
     const mspID = ctx.clientIdentity.getMSPID();
@@ -41,20 +42,12 @@ class PurchaseOrderContract extends Contract {
     ) {
       throw new Error("Not Authorized organization");
     }
-    const buyerCompanyDataByCRN = await ctx.companyList.getCompanyByCRN(
-      buyerCRN
-    );
-    const sellerCompanyDataByCRN = await ctx.companyList.getCompanyByCRN(
-      sellerCRN
-    );
-    if (
-      buyerCompanyDataByCRN.length !== 1 &&
-      sellerCompanyDataByCRN.length !== 1
-    ) {
+    const buyerCompany = await ctx.companyList.getCompanyByCRN(buyerCRN);
+    const sellerCompany = await ctx.companyList.getCompanyByCRN(sellerCRN);
+    if (!buyerCompany || !sellerCompany) {
       throw new Error("Invalid Company CRN Data");
     }
-    const buyerCompany = buyerCompanyDataByCRN[0];
-    const sellerCompany = sellerCompanyDataByCRN[0];
+
     if (
       Company.compareHiearchy(
         buyerCompany.getHiearchy(),

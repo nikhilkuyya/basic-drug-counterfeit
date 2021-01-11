@@ -61,9 +61,50 @@ class StateList {
    */
   async addState(state) {
     let key = this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
-    console.log("add state", this.name, state.getSplitKey(), key);
     let data = State.serialize(state);
     await this.ctx.stub.putState(key, data);
+  }
+
+  async getHisotryResults(iterator) {
+    const allResults = [];
+    while (true) {
+      const res = await iterator.next();
+      if (res.value) {
+        const currentData = res.value;
+        const timeStamp = currentData.getTimestamp();
+        const txId = currentData.getTxId();
+
+        allResults.push({
+          state: JSON.parse(
+            currentData.value.toString("utf8").split("\u0000").join("")
+          ),
+          timeStamp,
+          txId,
+        });
+      }
+
+      // check to see if we have reached then end
+      if (res.done) {
+        // explicitly close the iterator
+        await iterator.close();
+        return allResults;
+      }
+    }
+  }
+
+  async getHistory(key) {
+    let ledgerCompositeKey = this.ctx.stub.createCompositeKey(
+      this.name,
+      State.splitKey(key)
+    );
+    const stateHistoriesIterator = await this.ctx.stub.getHistoryForKey(
+      ledgerCompositeKey
+    );
+    try {
+      return await this.getHisotryResults(stateHistoriesIterator);
+    } catch (e) {
+      throw new Error(e);
+    }
   }
 
   /**
@@ -82,10 +123,12 @@ class StateList {
 
   async getStateByCompositeKey(ledgerCompositeKey) {
     let data = await this.ctx.stub.getState(ledgerCompositeKey);
-    console.log("Buffer :", data.toString().length);
+    return this._convertBufferToObject(data);
+  }
+
+  _convertBufferToObject(data) {
     if (data && data.toString().length !== 0) {
       let state = State.deserialize(data, this.supportedClasses);
-      console.log("state : ", state);
       return state;
     } else {
       return null;

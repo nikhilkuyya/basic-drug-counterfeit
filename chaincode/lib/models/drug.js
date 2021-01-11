@@ -30,8 +30,40 @@ class Drug extends State {
     });
   }
 
+  getOwner() {
+    return this.owner;
+  }
+
+  getDrugName() {
+    return this.name;
+  }
+
+  getMfgDate() {
+    return this.manufacturingDate;
+  }
+
+  getExpDate() {
+    return this.expiryDate;
+  }
+
+  getDrugProductID() {
+    return this.productID;
+  }
+
+  getManufacturer() {
+    return this.manufacturer;
+  }
+
+  getSerialNumber() {
+    return this.serialNo;
+  }
+
   setDrugProductID(productID) {
     Object.assign(this, { productID });
+  }
+
+  getShipment() {
+    return this.shipment.map((shipmentId) => shipmentId);
   }
 
   updateShipment(shipmentID) {

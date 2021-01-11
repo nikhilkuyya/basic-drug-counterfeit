@@ -14,7 +14,8 @@
 
 ---
 
-peer chaincode invoke -o orderer.pharma-network.com:7050 -C pharmachannel -n pharmanet -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:registerCompany","0001","Hello1","test place","Manufacturer"]}'
+peer chaincode invoke -o orderer.pharma-network.com:7050 -C pharmachannel
+-n pharmanet -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:registerCompany","0001","Hello1","test place","Manufacturer"]}'
 
 peer chaincode query -o orderer.pharma-network.com:7050 -C pharmachannel -n pharmanet -c '{"Args":["org.pharma-network.pharmanet.entityRegistrationContract:getCompany","0001","Hello1"]}'
 

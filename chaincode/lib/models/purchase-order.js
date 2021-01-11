@@ -33,7 +33,7 @@ class PurchaseOrder extends State {
       drugName: drugName,
       buyer: buyerCompositKey,
       seller: sellerCompositeKey,
-      quantity: quantity,
+      quantity: +quantity,
     });
   }
 }

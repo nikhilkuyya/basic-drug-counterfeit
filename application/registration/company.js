@@ -23,7 +23,6 @@ async function getCompany(companyCRN, companyName) {
     }
     return entity;
   } catch (e) {
-    console.log(e);
     throw new Error(e);
   } finally {
     console.log("disconnect");

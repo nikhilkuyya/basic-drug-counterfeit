@@ -29,10 +29,17 @@ module.exports = {
     purchaseOrder: {
       createPO: "createPurchaseOrder",
       fetchPO: "getPurchaseOrder",
+      retailDrug: "retailDrug",
+    },
+    shipment: {
+      createShipment: "createShipment",
+      updateShipment: "updateShipment",
     },
     registerCompany: "registerCompany",
     getCompany: "getCompany",
     registerDrug: "registerDrug",
     getDrugs: "getDrugs",
+    getDrug: "getDrug",
+    viewDrugHistory: "viewDrugHistory",
   },
 };

@@ -47,8 +47,7 @@ class EntityRegistrationContract extends Contract {
       throw new Error("Invalid Access");
     }
     const companyWorldState = await ctx.companyList.getCompanyByCRN(companyCRN);
-    console.log("current World state", companyWorldState);
-    if (companyWorldState.length > 0) {
+    if (companyWorldState !== null) {
       throw new Error("Already Exists");
     }
 

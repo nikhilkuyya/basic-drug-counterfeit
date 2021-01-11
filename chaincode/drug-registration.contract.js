@@ -31,12 +31,10 @@ class DrugRegistrationContract extends Contract {
     if (clientMSPID !== "manufacturerMSP") {
       throw new Error("not Authorized");
     }
-    const company = await ctx.companyList.getCompanyByCRN(companyCRN);
-    if (company.length !== 1) {
+    const companyData = await ctx.companyList.getCompanyByCRN(companyCRN);
+    if (companyData === null) {
       throw new Error("company is not registered");
     }
-    const companyData = company[0];
-    console.log("company Data", companyData);
     const drug = await ctx.drugList.getDrug(drugName, serialNo);
     if (drug !== null) {
       throw new Error("Already Manufactured with same data");
@@ -56,6 +54,16 @@ class DrugRegistrationContract extends Contract {
   async getDrugs(ctx, drugName) {
     validate("S", [drugName]);
     return await ctx.drugList.getDrugsByName(drugName);
+  }
+
+  async getDrug(ctx, drugName, serialNo) {
+    validate("SS", [drugName, serialNo]);
+    return await ctx.drugList.getDrug(drugName, serialNo);
+  }
+
+  async viewDrugHistory(ctx, drugName, serialNo) {
+    validate("SS", [drugName, serialNo]);
+    return await ctx.drugList.getDrugHistory(drugName, serialNo);
   }
 }
 
