@@ -74,21 +74,21 @@ class EntityRegistrationContract extends Contract {
     let isValid = false;
     if (organizationRole) {
       switch (mspID) {
-        case constants.msp.manufacturer:
-          isValid = organizationRole === "Manufacturer";
-          break;
-        case constants.msp.retailer:
-          isValid = organizationRole === "Retailer";
-          break;
-        case constants.msp.transporter:
-          isValid = organizationRole === "Transporter";
-          break;
-        case constants.msp.distributor:
-          isValid = organizationRole === "Distributor";
-          break;
-        default:
-          isValid = false;
-          break;
+      case constants.msp.manufacturer:
+        isValid = organizationRole === "Manufacturer";
+        break;
+      case constants.msp.retailer:
+        isValid = organizationRole === "Retailer";
+        break;
+      case constants.msp.transporter:
+        isValid = organizationRole === "Transporter";
+        break;
+      case constants.msp.distributor:
+        isValid = organizationRole === "Distributor";
+        break;
+      default:
+        isValid = false;
+        break;
       }
     }
     return isValid;
