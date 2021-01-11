@@ -37,8 +37,6 @@ class CreateShipmentContract extends Contract {
     try {
       //#region  validation
       const listOfAssets = assets.split(",").map((d) => d.trim());
-      // console.log("assets Lists", listOfAssets);
-      // console.log("assets inputs", assets);
       validate("SSAS", [buyerCRN, drugName, listOfAssets, transporterCRN]);
       if (Array.isArray(listOfAssets) && listOfAssets.length <= 0) {
         throw new Error("invalid length of assets");
@@ -67,37 +65,24 @@ class CreateShipmentContract extends Contract {
         throw new Error("invalid assets requests count");
       }
       let requstedDrugsStateList;
-      // console.log("drugs", drugs);
-      // console.log("assets Lists", listOfAssets);
-      // console.log(
-      //   "first asset request",
-      //   listOfAssets[0],
-      //   listOfAssets[0].length
-      // );
       if (drugs && Array.isArray(drugs)) {
         requstedDrugsStateList = drugs
           .filter((drug) => {
-            console.log("drug Owner", drug.owner);
-            console.log("purchaseOrder ", purchaseOrder.seller);
             return drug.owner === purchaseOrder.seller;
           })
           .filter((drug) => {
             const drugproductID = drug.getDrugProductID().trim();
-            console.log("drug productId", drugproductID, drugproductID.length);
             const splitCompKey = ctx.stub.splitCompositeKey(drugproductID);
             const drugPID =
               splitCompKey.objectType + splitCompKey.attributes.join("");
-            console.log("split CompKey", splitCompKey);
-            console.log("drug productId", drugPID, drugPID.length);
 
             const isRequested = listOfAssets.includes(drugPID);
-            console.log("res of includes", isRequested);
+
             return isRequested;
           });
       } else {
         requstedDrugsStateList = [];
       }
-      console.log("registered drugs", requstedDrugsStateList);
       if (listOfAssets.length !== requstedDrugsStateList.length) {
         throw new Error("invalid assets requests");
       }
@@ -106,7 +91,6 @@ class CreateShipmentContract extends Contract {
       // #region Update Drug Status
       for (let it = 0; it < requstedDrugsStateList.length; it++) {
         const drugState = requstedDrugsStateList[it];
-        console.log("drugState", drugState);
         const newDrugState = Drug.createInstance(
           drugState.getDrugName(),
           drugState.getSerialNumber(),
@@ -119,7 +103,6 @@ class CreateShipmentContract extends Contract {
         });
         newDrugState.updateOwner(transporterCompany.getCompanyID());
         newDrugState.setDrugProductID(drugState.getDrugProductID());
-        console.log("new Drug State", newDrugState);
         await ctx.drugList.updateDrug(newDrugState);
       }
 

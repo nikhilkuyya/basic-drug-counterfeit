@@ -16,7 +16,6 @@ async function createShipment(
   );
   console.log(".... Processing Create Shipment \n\n ");
   let shipment = JSON.parse(shipmentBuffer.toString());
-  console.log(shipment);
   console.log("\n\n ...Register new Shipment Complete! ");
   return shipment;
 }
@@ -35,7 +34,6 @@ async function updateShipment(
   );
   console.log(".... Processing Update Shipment \n\n ");
   let shipment = JSON.parse(shipmentBuffer.toString());
-  console.log(shipment);
   console.log("\n\n ...Update Shipment Complete! ");
   return shipment;
 }

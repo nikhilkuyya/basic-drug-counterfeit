@@ -22,7 +22,6 @@ async function createRetailSale(
       constants.retailer.fabricUserName,
       constants.retailer.connectionProfilePath
     );
-    console.log("inputs", drugName, serialNo, retailerCRN, customerAadhar);
 
     const retailSaleBuffer = await PurchaseOrderContract.submitTransaction(
       constants.entitySC.purchaseOrder.retailDrug,
@@ -33,7 +32,6 @@ async function createRetailSale(
     );
     console.log(".... Processing Retail Sale \n\n ");
     let retailSale = JSON.parse(retailSaleBuffer.toString());
-    console.log(retailSale);
     console.log("\n\n ...Register new Retail Sale Complete! ");
     return retailSale;
   } catch (error) {

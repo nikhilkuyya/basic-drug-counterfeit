@@ -19,7 +19,6 @@ async function fetchDrugs(drugName) {
     );
     console.log(".... Processing Drug Registration Transaction \n\n ");
     let drugs = JSON.parse(drugBuffer.toString());
-    console.log(drugs);
     console.log("\n\n ...Register new Drug Complete! ");
     return drugs;
   } catch (e) {

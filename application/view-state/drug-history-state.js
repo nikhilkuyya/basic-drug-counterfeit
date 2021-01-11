@@ -20,7 +20,6 @@ async function fetchDrugHistory(drugName, serialNo) {
     );
     console.log(".... Processing Drug Transactions \n\n ");
     let drugHistories = JSON.parse(drugHistoryBuffer.toString());
-    console.log(drugHistories);
     console.log("\n\n ... Fetching Drug State History! ");
     return drugHistories;
   } catch (e) {

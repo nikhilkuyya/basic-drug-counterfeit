@@ -35,7 +35,6 @@ class DrugRegistrationContract extends Contract {
     if (companyData === null) {
       throw new Error("company is not registered");
     }
-    console.log("company Data", companyData);
     const drug = await ctx.drugList.getDrug(drugName, serialNo);
     if (drug !== null) {
       throw new Error("Already Manufactured with same data");

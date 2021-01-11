@@ -20,7 +20,6 @@ async function viewDrugCurrentState(drugName, serialNo) {
     );
     console.log(".... Fetching Drug Current State \n\n ");
     let currentState = JSON.parse(drugStateBuffer.toString());
-    console.log(currentState);
     console.log("\n\n ...Fetching Drug State! ");
     return currentState;
   } catch (e) {

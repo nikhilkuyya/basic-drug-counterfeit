@@ -40,7 +40,6 @@ class RetailDrugContract extends Contract {
     if (drugDetails.getOwner() !== retailer.getCompanyID()) {
       throw new Error("not valid Sale from retailer");
     }
-    console.log("drugState", drugDetails);
     const newDrugState = Drug.createInstance(
       drugDetails.getDrugName(),
       drugDetails.getSerialNumber(),
@@ -53,7 +52,6 @@ class RetailDrugContract extends Contract {
       newDrugState.updateShipment(shipmentID);
     });
     newDrugState.updateOwner(customerAadhar);
-    console.log("update Drug State", newDrugState);
     await ctx.drugList.updateDrug(newDrugState);
     return newDrugState;
   }

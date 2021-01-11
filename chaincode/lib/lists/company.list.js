@@ -13,7 +13,6 @@ class CompanyList extends StateList {
 
   async getCompanyByCRN(companyCRN) {
     const partialKey = Company.makeKey([companyCRN]);
-    console.log(partialKey);
 
     const companyList = await this.getStateByPartialCompositeKey(partialKey);
     if (companyList && Array.isArray(companyList) && companyList.length === 1) {

@@ -61,7 +61,6 @@ class StateList {
    */
   async addState(state) {
     let key = this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
-    console.log("add state", this.name, state.getSplitKey(), key);
     let data = State.serialize(state);
     await this.ctx.stub.putState(key, data);
   }
@@ -106,40 +105,6 @@ class StateList {
     } catch (e) {
       throw new Error(e);
     }
-    // const list = [];
-    // let hasNext = true;
-    // while (hasNext) {
-    //   let val = await stateHistoriesIterator.next();
-    //   if (val && val.value && val.value.getValue()) {
-    //     const currentData = val.value;
-    //     const timeStamp = currentData.getTimestamp();
-    //     const txId = currentData.getTxId();
-    //     let newItem;
-    //     try {
-    //       newItem = {
-    //         state: this._convertBufferToObject(await currentData.getValue()),
-    //         timeStamp: timeStamp,
-    //         tx_id: txId,
-    //       };
-    //     } catch (e) {
-    //       console.log("history value", currentData.getValue());
-    //       console.log("history value", await currentData.getValue());
-    //       console.log("error", e);
-    //     } finally {
-    //       newItem = {
-    //         state: null,
-    //         timeStamp: timeStamp,
-    //         tx_id: txId,
-    //       };
-    //     }
-    //     list.push(newItem);
-    //     hasNext = !val.done;
-    //   } else {
-    //     hasNext = false;
-    //   }
-    // }
-    // await stateHistoriesIterator.close();
-    // return list;
   }
 
   /**
@@ -162,10 +127,8 @@ class StateList {
   }
 
   _convertBufferToObject(data) {
-    console.log("Buffer :", data, data.toString().length);
     if (data && data.toString().length !== 0) {
       let state = State.deserialize(data, this.supportedClasses);
-      console.log("state : ", state);
       return state;
     } else {
       return null;

@@ -31,7 +31,6 @@ async function drugRegistration(
     );
     console.log(".... Processing Drug Registration Transaction \n\n ");
     let newDrug = JSON.parse(drugBuffer.toString());
-    console.log(newDrug);
     console.log("\n\n ...Register new Drug Complete! ");
     return newDrug;
   } catch (e) {
