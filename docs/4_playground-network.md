@@ -37,10 +37,7 @@ Lets' also start the application and use the postman to easy use for clients.
   for each peer.
 - location for keystore :inside the folder network folder and follow arrows marks. example below.
 - crypto-config > peerOrganizations > consumer.pharma-network.com > users > Admin@consumer.pharma-netwokr.com > msp > keystore >
-- We need to copy the respecitve peer msp keystore file names and paste in **1_addToWallet.js** of application,location of place is highlighted place for the respective peer. ( Refer to Figure: place of replace )
-
-  ![place of replace](docs/blue-highlighed-wallet.png)
-
+- We need to copy the respecitve peer msp keystore file names and paste in **1_addToWallet.js** of application,location .
 - Ensure you have replaced the secret file from network keystore to the **1_addToWallet.js** for all the peerOrganizations.
 - Run the application by command **npm run test**
 - Now we are running whole application,chaincode with the networkup.
